@@ -1,0 +1,26 @@
+<div>
+    <section >
+    <form class="form-class" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <h2>Login</h2>
+      <mat-form-field appearance="outline">
+        <input matInput 
+        type="email" 
+        placeholder="your email" 
+        formControlName="email">
+        <mat-error *ngIf="signupForm.get('email')?.errors?.['required']">Email is required</mat-error>
+        <mat-error *ngIf="signupForm.get('email')?.errors?.['email']">Email is invalid</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input matInput 
+        type="password" 
+        placeholder="your password" 
+        formControlName="password">
+        <mat-error *ngIf="signupForm.get('password')?.errors?.['required']">Password is required</mat-error>
+        <mat-error *ngIf="signupForm.get('password')?.errors?.['minlength']">Password must have at least 7 characters</mat-error>
+      </mat-form-field>
+      
+      <button type="submit" mat-raised-button color="primary" [disabled]="!signupForm.valid">Submit</button>
+      <a routerLink="/signup">or register now !</a>
+    </form>
+  </section>
+</div>

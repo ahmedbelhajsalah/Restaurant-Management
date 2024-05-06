@@ -12,6 +12,19 @@ export class AuthService {
   constructor(private Http: HttpClient) {}
 
   signUp(signupRequest: any):Observable<any>{
-    return this.Http.post<[]>(BASIC_URL + "api/auth/signup", signupRequest)
+    return this.Http.post<[]>(BASIC_URL + "api/auth/signup", signupRequest);
   }
+
+  login(loginRequest: any){
+    return this.Http.post<User>(BASIC_URL + "api/auth/login", loginRequest);
+  }
+
+  
+
+}
+
+export interface User{
+    userId: string,
+    userRole: string,
+    jwt: string
 }

@@ -13,12 +13,16 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './auth-components/login/login.component';
+import {MatIconModule} from '@angular/material/icon';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SignupComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,8 @@ import { FormsModule } from '@angular/forms';
     MatToolbarModule,
     MatInputModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    MatIconModule
   ],
   providers: [
     provideClientHydration(),
