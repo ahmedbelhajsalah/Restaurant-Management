@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService, User } from '../../auth-services/auth-service/auth.service';
 import { StorageService } from '../../auth-services/storage-service/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { StorageService } from '../../auth-services/storage-service/storage.serv
 export class LoginComponent {
 
   constructor(private signupService: AuthService,
-    private fb:FormBuilder
+    private fb:FormBuilder, private router: Router
   ){}
   signupForm!: FormGroup;
 
@@ -33,6 +34,11 @@ export class LoginComponent {
         }
         StorageService.saveToken(res.jwt);
         StorageService.saveUser(user);
+        if(StorageService.isAdminLoggedIn()){
+          this.router.navigateByUrl("admin/dashboard");
+        } else if(StorageService.isCustomerLoggedIn()){
+          this.router.navigateByUrl("customer/dashboard");
+        }
       } else{
         console.log('wrong credentials');
       }
