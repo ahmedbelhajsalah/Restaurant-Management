@@ -30,4 +30,10 @@ export class AdminService {
       headers: this.creatAuthorizationHeader()
     });
   }
+
+  getAllCategoriesByTitle(title: string): Observable<any>{
+    return this.http.get<any>(BASIC_URL +`api/admin/categories/${title}`,{
+      headers: this.creatAuthorizationHeader()
+    });
+  }
 }

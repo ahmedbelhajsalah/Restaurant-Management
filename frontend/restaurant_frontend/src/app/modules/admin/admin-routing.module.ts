@@ -7,7 +7,7 @@ import { PostProductComponent } from './admin-components/post-product/post-produ
 const routes: Routes = [
   {path: "dashboard", component: DashboardComponent},
   {path: "category", component: AddCategoryComponent},
-  {path: "product", component: PostProductComponent}
+  {path: "product", component: DashboardComponent}
 ];
 
 @NgModule({

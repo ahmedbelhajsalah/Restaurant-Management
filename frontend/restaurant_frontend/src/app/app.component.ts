@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
     }
 
   goToAdminDashboard() {
-    this.router.navigate(['admin/dashboard']); 
+    this.router.navigate(['admin/product']); 
     }
 
   goToAdminCategory() {
@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
     }
 
   goToCustomerDashboard() {
-    this.router.navigate(['admin/dashboard']); 
+    this.router.navigate(['admin/product']); 
     }
   
   goToCustomerCategory() {
