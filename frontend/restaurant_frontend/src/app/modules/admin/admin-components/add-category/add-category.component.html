@@ -1,0 +1,23 @@
+<div>
+    <section >
+    <form class="form-class" [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+        <h2>Add Category</h2>
+        <input type="file" class="file-upload" formControlName="img" (change)="onFileSelected($event)">
+      <mat-form-field appearance="outline">
+        <input matInput 
+        type="text" 
+        placeholder="Name" 
+        formControlName="name">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input matInput 
+        type="text" 
+        placeholder="Description" 
+        formControlName="description">
+      </mat-form-field>
+      
+      <button type="submit" mat-raised-button color="primary" [disabled]="!categoryForm.valid">Submit</button>
+      <a routerLink="/signup">or register now !</a>
+    </form>
+  </section>
+</div>

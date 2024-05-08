@@ -22,7 +22,7 @@ public class AuthServiceImpl implements AuthService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    @PostConstruct
+    /* @PostConstruct
     public void createAdminAccount(){
         User adminAccount = userRepository.findByUserRole(UserRole.ADMIN);
         if(adminAccount == null){
@@ -33,7 +33,7 @@ public class AuthServiceImpl implements AuthService {
             user.setPassword(new BCryptPasswordEncoder().encode("admin123"));
             userRepository.save(user);
         }
-    }
+    } */
 
     @Override
     public UserDto createUser(SignupRequest signupRequest) {

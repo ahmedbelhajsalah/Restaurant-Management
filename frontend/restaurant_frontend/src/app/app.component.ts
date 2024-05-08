@@ -10,6 +10,7 @@ import { StorageService } from './auth-services/storage-service/storage.service'
 })
 export class AppComponent implements OnInit {
 
+
   title = 'restaurant_frontend';
 
   constructor(private router: Router, private cdr: ChangeDetectorRef) {}
@@ -32,6 +33,28 @@ export class AppComponent implements OnInit {
 
   goToSignup() {
     this.router.navigate(['/signup']); 
+    }
+
+  goToAdminDashboard() {
+    this.router.navigate(['admin/dashboard']); 
+    }
+
+  goToAdminCategory() {
+    this.router.navigate(['admin/category']);
+    }
+
+  goToCustomerDashboard() {
+    this.router.navigate(['admin/dashboard']); 
+    }
+  
+  goToCustomerCategory() {
+    this.router.navigate(['admin/category']);
+    }
+  goToAdminProduct() {
+    this.router.navigate(['admin/product']);
+    }
+  goToCustomerProduct() {
+    this.router.navigate(['customer/product']);
     }
 
   logout(){

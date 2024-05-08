@@ -11,7 +11,9 @@
     <mat-toolbar-row>
         <span>Restaurant Management App</span>
         <span class="toolbar-spacer"></span>
-        <button mat-button color="primary" (click)="goToLogin()">Dashboard</button>
+        <button mat-button color="primary" (click)="goToAdminDashboard()">Dashboard</button>
+        <button mat-button color="primary" (click)="goToAdminCategory()">Category</button>
+        <button mat-button color="primary" (click)="goToAdminProduct()">Product</button>
         <button mat-button color="primary"  (click)="logout()">Logout</button>
       </mat-toolbar-row>
     </mat-toolbar>
@@ -20,7 +22,9 @@
         <mat-toolbar-row>
             <span>Restaurant Management App</span>
             <span class="toolbar-spacer"></span>
-            <button mat-button color="primary" (click)="goToLogin()">Dashboard</button>
+            <button mat-button color="primary" (click)="goToCustomerDashboard()">Dashboard</button>
+            <button mat-button color="primary" (click)="goToCustomerCategory()">Category</button>
+            <button mat-button color="primary" (click)="goToCustomerProduct()">Product</button>
             <button mat-button color="primary"  (click)="logout()">Logout</button>
           </mat-toolbar-row>
         </mat-toolbar>
