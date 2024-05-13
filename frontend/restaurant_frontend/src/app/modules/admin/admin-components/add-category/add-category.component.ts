@@ -47,7 +47,7 @@ export class AddCategoryComponent {
     formData.append('name', this.categoryForm.get('name')?.value);
     formData.append('description', this.categoryForm.get('description')?.value);
     this.adminService.postCategory(formData).subscribe(data =>{
-      alert("Car posted successfully");
+      alert("Category posted successfully");
     },error => {
       alert("Something went wrong");
     })

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AdminService } from '../../admin-services/admin.service';
-import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 export interface Category {
   id: string;
@@ -17,7 +17,8 @@ export interface Category {
 export class DashboardComponent implements OnInit {
 
 
-  constructor(private adminService: AdminService){}
+
+  constructor(private adminService: AdminService, private router: Router){}
 
 
   categories: Category[] = [];
@@ -50,6 +51,11 @@ applyFilter(event: Event) {
   });
 }
 
-  
+goToAdminProduct(categoryId: string) {
+  this.router.navigate([`admin/product/${categoryId}`]);
+  }
+goToAdminViewProducts(categoryId: string) {
+  this.router.navigate([`admin/products/${categoryId}`]);
+  }
 
 }

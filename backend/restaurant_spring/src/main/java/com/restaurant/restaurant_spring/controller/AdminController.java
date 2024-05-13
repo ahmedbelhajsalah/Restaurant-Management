@@ -1,9 +1,11 @@
 package com.restaurant.restaurant_spring.controller;
 
 import com.restaurant.restaurant_spring.dto.CategoryDto;
+import com.restaurant.restaurant_spring.dto.ProductDto;
 import com.restaurant.restaurant_spring.repositories.CategoryRepository;
 import com.restaurant.restaurant_spring.services.admin.AdminService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,5 +39,20 @@ public class AdminController {
         List<CategoryDto> categories = adminService.getAllCategoriesByTitle(title);
         if(categories == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(categories);
+    }
+
+    // Product Operations
+    @PostMapping("/product/{productId}")
+    public ResponseEntity<?> postProduct(@PathVariable Long productId ,@ModelAttribute ProductDto productDto) throws IOException {
+        ProductDto createdProductDto = adminService.postProduct(productId, productDto);
+        if(createdProductDto == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Something Went Wrong");
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdProductDto);
+    }
+
+    @GetMapping("/products/{categoryId}")
+    public ResponseEntity<?> getAllProductsByCategory(@PathVariable Long categoryId) throws IOException {
+        List<ProductDto> createdProductDto = adminService.getAllProductsByCategory(categoryId);
+        if(createdProductDto == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Something Went Wrong");
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdProductDto);
     }
 }

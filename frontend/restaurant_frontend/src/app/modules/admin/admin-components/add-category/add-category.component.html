@@ -3,6 +3,7 @@
     <form class="form-class" [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
         <h2>Add Category</h2>
         <input type="file" class="file-upload" formControlName="img" (change)="onFileSelected($event)">
+        <img *ngIf="imagePreview" [src]="imagePreview" style="width: 250px;" alt="Selected Image">
       <mat-form-field appearance="outline">
         <input matInput 
         type="text" 

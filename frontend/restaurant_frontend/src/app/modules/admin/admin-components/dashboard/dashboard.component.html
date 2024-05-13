@@ -1,6 +1,7 @@
+<div>
 <mat-form-field class="category-card">
     <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. restaurant gammart .." #input>
   </mat-form-field>
 <mat-card class="category-card" *ngFor="let category of categories">
     <mat-card-header>
@@ -11,9 +12,10 @@
       <p>{{ category.description }}</p>
       <mat-divider></mat-divider>
     </mat-card-content>
-    <mat-card-actions style="margin-left: 60%; gap: 20px    ;">
-      <button mat-button>View Products</button>
-      <button mat-button>Post Product</button>
+    <mat-card-actions style="margin-left: 60%; gap: 20px;">
+      <button mat-button (click)="goToAdminViewProducts(category.id)">View Products</button>
+      <button mat-button (click)="goToAdminProduct(category.id)">Post Product</button>
     </mat-card-actions>
    
   </mat-card>
+</div>
