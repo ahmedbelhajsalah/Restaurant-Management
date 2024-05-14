@@ -9,6 +9,7 @@ const BASIC_URL= ["http://localhost:8080/"]
   providedIn: 'root'
 })
 export class AdminService {
+  
 
   constructor(private http: HttpClient) { }
 
@@ -47,5 +48,24 @@ export class AdminService {
     return this.http.get<any>(BASIC_URL +`api/admin/products/${categoryId}`,{
       headers: this.creatAuthorizationHeader()
     });
+  }
+
+  deleteProduct(productTd: number): Observable<any> {
+    console.log('product Id: ', productTd);
+    return this.http.delete<any>(BASIC_URL + `api/admin/products/${productTd}`,{
+      headers: this.creatAuthorizationHeader()
+    });
+  }
+
+  getProductById(productId: number): Observable<any>{
+    return this.http.get<any>(BASIC_URL +`api/admin/product/${productId}`,{
+      headers: this.creatAuthorizationHeader()
+    });
+  }
+
+  updateProduct(productId: number, productDto: any): Observable<any>{
+    return this.http.put<any>(BASIC_URL + `api/admin/updatedProduct/${productId}`, productDto,{
+      headers: this.creatAuthorizationHeader()
+    })
   }
 }

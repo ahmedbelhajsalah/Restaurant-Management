@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from '../dashboard/dashboard.component';
 
 export interface Product{
-  id:string;
+  id:number;
   name: string;
   returnedImg:string;
   description: string;
@@ -18,6 +18,7 @@ export interface Product{
   styleUrl: './view-products.component.css'
 })
 export class ViewProductsComponent {
+
 
   constructor(private adminService: AdminService, private router: Router,
     private activatedRouter: ActivatedRoute
@@ -55,5 +56,15 @@ applyFilter(event: Event) {
     return product.name.toLowerCase().includes(filterValue);
   });
 }
+
+onDeleteProduct(productId: number) {
+  this.adminService.deleteProduct(productId).subscribe(() => {
+    this.products = this.products.filter(product => product.id !== productId);
+    this.originalProducts = this.products.filter(product => product.id !== productId);
+  }, error => {
+    console.error('Error deleting product:', error);
+  });
+}
+
 
 }

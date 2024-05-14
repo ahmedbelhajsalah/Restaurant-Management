@@ -10,8 +10,11 @@
         </mat-card-header>
         <mat-card-content>
           <p>{{ product.description }}</p>
-          <mat-divider></mat-divider>
+          <mat-divider style="margin-bottom: 2%;"></mat-divider>
         </mat-card-content>
-       
+        <div class="button-container">
+          <button mat-raised-button color="primary" routerLink="/admin/products/updateProduct/{{product.id}}">Update</button>
+          <button mat-raised-button color="warn" (click)="onDeleteProduct(product.id)">Delete</button>
+        </div>
       </mat-card>
     </div>

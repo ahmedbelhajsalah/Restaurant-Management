@@ -55,4 +55,33 @@ public class AdminController {
         if(createdProductDto == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Something Went Wrong");
         return ResponseEntity.status(HttpStatus.CREATED).body(createdProductDto);
     }
+
+    @GetMapping("/products/{categoryId}/{title}")
+    public ResponseEntity<?> getAllProductsByCategoryIdAndTitle(@PathVariable Long categoryId, @PathVariable String title) throws IOException {
+        List<ProductDto> createdProductDto = adminService.getAllProductsByCategoryIdAndTitle(categoryId, title);
+        if(createdProductDto == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Something Went Wrong");
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdProductDto);
+    }
+
+    @DeleteMapping("/products/{productId}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long productId) throws IOException {
+        System.out.println(productId);
+        adminService.deleteProduct(productId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/product/{productId}")
+    public ResponseEntity<?> getProductById(@PathVariable Long productId) throws IOException {
+        ProductDto productDto = adminService.getProductById(productId);
+        if(productDto == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(productDto);
+    }
+
+    @PutMapping("/updatedProduct/{productId}")
+    public ResponseEntity<?> getAllProductsByCategory(@PathVariable Long productId, @ModelAttribute ProductDto productDto) throws IOException {
+        ProductDto updatedProductDto = adminService.updateProduct(productId, productDto);
+        if(updatedProductDto == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Something Went Wrong");
+        return ResponseEntity.status(HttpStatus.OK).body(updatedProductDto);
+    }
+
 }

@@ -16,4 +16,12 @@ public interface AdminService {
     ProductDto postProduct(Long productId, ProductDto productDto) throws IOException;
 
     List<ProductDto> getAllProductsByCategory(Long productId);
+
+    List<ProductDto> getAllProductsByCategoryIdAndTitle(Long categoryId, String title);
+
+    void deleteProduct(Long categoryId);
+
+    ProductDto getProductById(Long productId);
+
+    ProductDto updateProduct(Long productId, ProductDto productDto) throws IOException;
 }

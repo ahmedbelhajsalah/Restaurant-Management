@@ -20,13 +20,15 @@ import {MatCardModule} from '@angular/material/card';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatDividerModule} from '@angular/material/divider';
 import { ViewProductsComponent } from './admin-components/view-products/view-products.component';
+import { UpdateProductComponent } from './admin-components/update-product/update-product.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     AddCategoryComponent,
     PostProductComponent,
-    ViewProductsComponent
+    ViewProductsComponent,
+    UpdateProductComponent
   ],
   imports: [
     CommonModule,

@@ -4,3 +4,11 @@
     margin-left: 20%;
     margin-top: 1%;
 }
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 2%;
+    margin-right: 4%;
+    gap: 2px;
+  }
