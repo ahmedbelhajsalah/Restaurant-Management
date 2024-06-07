@@ -1,15 +1,18 @@
 <div>
-    <mat-form-field class="products-card">
+    <mat-form-field class="filter">
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. restaurant gammart .." #input>
       </mat-form-field>
-    <mat-card class="products-card" *ngFor="let product of products">
-        <mat-card-header>
-            <mat-card-subtitle> <img [src]="product.returnedImg" style="height: 150px; width: 200px;"></mat-card-subtitle>
-          <mat-card-title>{{ product.name }}</mat-card-title>
-        </mat-card-header>
+      <div *ngIf="!noProductAvailable()">
+    <mat-card class="products-card" *ngFor="let product of products" >
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title style="width: 100%; margin-left: 50%;">{{ product.name }}</mat-card-title>
+        <mat-card-subtitle style="width: 100%; margin-left: 50%;">{{ product.description }}</mat-card-subtitle>
+        </mat-card-title-group>
+          <mat-card-subtitle> <img [src]="product.returnedImg" style="height: 150px; width: 200px;"></mat-card-subtitle>
+      </mat-card-header>
         <mat-card-content>
-          <p>{{ product.description }}</p>
           <mat-divider style="margin-bottom: 2%;"></mat-divider>
         </mat-card-content>
         <div class="button-container">
@@ -18,3 +21,8 @@
         </div>
       </mat-card>
     </div>
+    <div *ngIf="noProductAvailable()" class="no-products-class">
+      <h3>This Category does not have any Products 🥲</h3>
+    </div>
+    </div>
+    

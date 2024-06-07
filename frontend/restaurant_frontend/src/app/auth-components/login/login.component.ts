@@ -30,11 +30,14 @@ export class LoginComponent {
       if(res.userId != null){
         const user ={
           id: res.userId,
-          role: res.userRole
+          role: res.userRole,
+          name: res.name
         }
         StorageService.saveToken(res.jwt);
         StorageService.saveUser(user);
         if(StorageService.isAdminLoggedIn()){
+          console.log('user name is: ', user.name)
+          console.log('userrName is: ', StorageService.getUserName())
           this.router.navigateByUrl("admin/dashboard");
         } else if(StorageService.isCustomerLoggedIn()){
           this.router.navigateByUrl("customer/dashboard");

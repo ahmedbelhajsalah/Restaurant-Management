@@ -75,6 +75,7 @@ public class AuthController {
             authenticationResponse.setJwt(jwt);
             authenticationResponse.setUserRole(optionalUser.get().getUserRole());
             authenticationResponse.setUserId(optionalUser.get().getId());
+            authenticationResponse.setName(optionalUser.get().getName());
         }
         System.out.println("ttt");
         System.out.println(authenticationResponse);

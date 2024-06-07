@@ -1,31 +1,35 @@
-<mat-toolbar class="toolbar-class" *ngIf="!isAdmin && !isCustomer">
-<mat-toolbar-row>
-    <span>Restaurant Management App</span>
-    <span class="toolbar-spacer"></span>
-    <button mat-button color="primary" (click)="goToLogin()">Login</button>
-    <button mat-button color="primary"  (click)="goToSignup()">Sign up</button>
-  </mat-toolbar-row>
-</mat-toolbar>
-
-<mat-toolbar class="toolbar-class" *ngIf="isAdmin">
+<div class="dashboard-class">
+  <div class="toolbar-class">
+  <mat-toolbar *ngIf="!isAdmin && !isCustomer">
     <mat-toolbar-row>
-        <span>Restaurant Management App</span>
-        <span class="toolbar-spacer"></span>
-        <button mat-button color="primary" (click)="goToAdminDashboard()">Dashboard</button>
-        <button mat-button color="primary" (click)="goToAdminCategory()">Category</button>
-        <button mat-button color="primary"  (click)="logout()">Logout</button>
-      </mat-toolbar-row>
-    </mat-toolbar>
+      <span>Restaurant Management App</span>
+      <span class="toolbar-spacer"></span>
+      <button mat-button color="primary" (click)="goToLogin()">Login</button>
+      <button mat-button color="primary" (click)="goToSignup()">Sign up</button>
+    </mat-toolbar-row>
+  </mat-toolbar>
 
-    <mat-toolbar class="toolbar-class" *ngIf="isCustomer">
-        <mat-toolbar-row>
-            <span>Restaurant Management App</span>
-            <span class="toolbar-spacer"></span>
-            <button mat-button color="primary" (click)="goToCustomerDashboard()">Dashboard</button>
-            <button mat-button color="primary" (click)="goToCustomerCategory()">Category</button>
-            <button mat-button color="primary" (click)="goToCustomerProduct()">Product</button>
-            <button mat-button color="primary"  (click)="logout()">Logout</button>
-          </mat-toolbar-row>
-        </mat-toolbar>
+  <mat-toolbar *ngIf="isAdmin">
+    <mat-toolbar-row>
+      <span>Hello {{userName}} 😀</span>
+      <span class="toolbar-spacer"></span>
+      <button mat-button  (click)="goToAdminDashboard()">Dashboard</button>
+      <button mat-button  (click)="goToAdminCategory()">Category</button>
+      <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+    </mat-toolbar-row>
+  </mat-toolbar>
 
-<router-outlet></router-outlet>
+  <mat-toolbar *ngIf="isCustomer">
+    <mat-toolbar-row>
+      <span>Hello {{userName}} 😀</span>
+      <span class="toolbar-spacer"></span>
+      <button mat-button color="primary" (click)="goToCustomerDashboard()">Dashboard</button>
+      <button mat-button color="primary" (click)="goToCustomerCategory()">Category</button>
+      <button mat-button color="primary" (click)="goToCustomerProduct()">Product</button>
+      <button mat-button color="primary" (click)="logout()">Logout</button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+  <router-outlet></router-outlet>
+  
+</div>

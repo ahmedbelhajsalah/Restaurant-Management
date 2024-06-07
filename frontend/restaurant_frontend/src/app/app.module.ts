@@ -15,6 +15,9 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './auth-components/login/login.component';
 import {MatIconModule} from '@angular/material/icon';
+import { AboutSectionComponent } from './modules/common-components/about-section/about-section.component';
+import { AdminModule } from './modules/admin/admin.module';
+import { PenguinGreetingsComponent } from './modules/common-components/penguin-greetings/penguin-greetings.component';
 
 
 
@@ -35,7 +38,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatInputModule,
     MatButtonModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    AdminModule
   ],
   providers: [
     provideClientHydration(),

@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
 
 
   title = 'restaurant_frontend';
+  userName = StorageService.getUserName();
 
   constructor(private router: Router, private cdr: ChangeDetectorRef) {}
   isAdmin= StorageService.isAdminLoggedIn();

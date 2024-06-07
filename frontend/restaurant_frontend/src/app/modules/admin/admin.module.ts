@@ -21,6 +21,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatDividerModule} from '@angular/material/divider';
 import { ViewProductsComponent } from './admin-components/view-products/view-products.component';
 import { UpdateProductComponent } from './admin-components/update-product/update-product.component';
+import { AboutSectionComponent } from '../common-components/about-section/about-section.component';
+import { PenguinGreetingsComponent } from '../common-components/penguin-greetings/penguin-greetings.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { UpdateProductComponent } from './admin-components/update-product/update
     AddCategoryComponent,
     PostProductComponent,
     ViewProductsComponent,
-    UpdateProductComponent
+    UpdateProductComponent,
+    AboutSectionComponent,
+    PenguinGreetingsComponent
   ],
   imports: [
     CommonModule,
@@ -46,6 +50,10 @@ import { UpdateProductComponent } from './admin-components/update-product/update
     MatCardModule,
     MatProgressBarModule,
     MatDividerModule
-  ]
+  ],
+  exports: [
+    AboutSectionComponent,
+    PenguinGreetingsComponent
+  ],
 })
 export class AdminModule { }

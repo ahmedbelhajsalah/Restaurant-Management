@@ -36,6 +36,10 @@ ngOnInit(): void {
   this.getAllProductsBycategory();
 }
 
+noProductAvailable(){
+  return this.originalProducts.length === 0;
+}
+
 getAllProductsBycategory() {
   this.adminService.getAllProductsByCategory(this.categoryId).subscribe(data => {
     this.originalProducts = data.map((element: any) => {

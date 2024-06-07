@@ -1,7 +1,17 @@
-.toolbar-spacer {
-    flex: 1 1 auto;
-  }
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
 
-.toolbar-class{
-    background-color: aqua;
+
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.toolbar-class mat-toolbar{
+  background: linear-gradient(to right, black, rgba(0, 0, 0, 0));
+  color: white;
 }

@@ -17,7 +17,7 @@ export class StorageService {
     }
   }
 
-  static saveUser(user: {id: string, role: string}): void {
+  static saveUser(user: {id: string, role: string, name:string}): void {
     if (typeof localStorage !== 'undefined') {
       localStorage.removeItem(USER_KEY);
       localStorage.setItem(USER_KEY, JSON.stringify(user));
@@ -50,6 +50,12 @@ export class StorageService {
 
   static isCustomerLoggedIn(): boolean {
     return this.getUserRole() === 'CUSTOMER';
+  }
+
+  static getUserName(): string{
+    const user = this.getUser();
+    console.log('userrr: ', user)
+    return user ? user.name : '';
   }
 
   static logout(){
