@@ -84,4 +84,22 @@ public class AdminController {
         return ResponseEntity.status(HttpStatus.OK).body(updatedProductDto);
     }
 
+    @DeleteMapping("/category/{categoryId}")
+    public ResponseEntity<Void> deleteCategory(@PathVariable Long categoryId) throws IOException{
+        adminService.deleteCategory(categoryId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/updatedCategory/{categoryId}")
+    public ResponseEntity<?> updateCategory(@PathVariable Long categoryId, @ModelAttribute CategoryDto categoryDto) throws IOException{
+        CategoryDto updatedCategory = adminService.updateCategory(categoryId, categoryDto);
+        if(updatedCategory == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Something went wrong");
+        return ResponseEntity.status(HttpStatus.OK).body(updatedCategory);
+    }
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<CategoryDto> getCategoryById(@PathVariable Long categoryId) throws IOException{
+        CategoryDto categoryDto = adminService.getCategoryById(categoryId);
+        if(categoryDto == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(categoryDto);
+    }
 }

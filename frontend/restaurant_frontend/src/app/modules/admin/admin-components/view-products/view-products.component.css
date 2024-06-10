@@ -4,6 +4,7 @@
     margin-left: 25%;
     margin-top: 1%;
     background: linear-gradient(90deg, rgb(220, 225, 227), rgb(235, 248, 248));
+    border-radius: 5% 5% 5% 5%;
 }
 
 .button-container {
@@ -11,7 +12,7 @@
     justify-content: flex-end;
     margin-bottom: 2%;
     margin-right: 4%;
-    gap: 2px;
+    gap: 4px;
   }
   .filter{
     width: 50%;

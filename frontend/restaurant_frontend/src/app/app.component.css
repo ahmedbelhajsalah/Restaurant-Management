@@ -15,3 +15,11 @@ html, body {
   background: linear-gradient(to right, black, rgba(0, 0, 0, 0));
   color: white;
 }
+
+.link-style {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+

@@ -58,4 +58,15 @@ goToAdminViewProducts(categoryId: string) {
   this.router.navigate([`admin/products/${categoryId}`]);
   }
 
+  deleteCategory(categoryId: string){
+    this.adminService.deleteCategory(Number(categoryId)).subscribe(() =>{
+      this.categories = this.categories.filter(category => category.id !== categoryId);
+      this.originalCategories = this.originalCategories.filter(category => category.id !== categoryId);
+    }
+    )
+  }
+  
+  goUpdateCategory(categoryId: string){
+    this.router.navigate([`admin/updateCategory/${categoryId}`]);
+  }
 }

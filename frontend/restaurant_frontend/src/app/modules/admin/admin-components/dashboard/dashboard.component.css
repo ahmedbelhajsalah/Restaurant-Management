@@ -8,12 +8,18 @@
   
   .home-page {
     display: flex;
-    height: 100vh; /* Make the container full height */
+    height: 100vh;
   }
   
   .cards-container {
-    width: 75%; /* Take half the screen width */
-    overflow-y: auto; /* Enable scrolling if cards overflow */
+    width: 75%;
+    overflow-y: auto;
+    -ms-overflow-style: none; /* Hide scrollbar in Internet Explorer and Edge */
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+  }
+  
+  .cards-container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar in WebKit browsers (Chrome, Safari) */
   }
   
   .row-class {
@@ -23,10 +29,12 @@
   }
   
   .category-card {
-    width: 80%; /* Adjust card width */
+    width: 80%;
     margin: 1% 0;
     background: linear-gradient(90deg, rgb(220, 225, 227), rgb(235, 248, 248));
     max-width: 700px;
+    border-radius: 5%;
+    overflow: hidden;
   }
   
   .text-container {
@@ -35,15 +43,19 @@
     align-items: center;
     justify-content: center;
   }
-  .img-class{
+  
+  .img-class {
     height: 150px;
     width: 200px;
-    border-radius: 20% 20% 20% 20%;
+    border-radius: 20%;
   }
+  
   .subtitle {
     width: 100%;
     margin-left: 10px;
-
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    margin-left: 20px;
   }
-  
   

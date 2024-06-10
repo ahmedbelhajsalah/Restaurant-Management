@@ -11,7 +11,7 @@
 
   <mat-toolbar *ngIf="isAdmin">
     <mat-toolbar-row>
-      <span>Hello {{userName}} 😀</span>
+      <a routerLink="admin/dashboard" class="link-style"> <span>Hello {{userName}} 😀</span></a>
       <span class="toolbar-spacer"></span>
       <button mat-button  (click)="goToAdminDashboard()">Dashboard</button>
       <button mat-button  (click)="goToAdminCategory()">Category</button>

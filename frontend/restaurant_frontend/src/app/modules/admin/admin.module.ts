@@ -23,6 +23,7 @@ import { ViewProductsComponent } from './admin-components/view-products/view-pro
 import { UpdateProductComponent } from './admin-components/update-product/update-product.component';
 import { AboutSectionComponent } from '../common-components/about-section/about-section.component';
 import { PenguinGreetingsComponent } from '../common-components/penguin-greetings/penguin-greetings.component';
+import { UpdateCategoryComponent } from './admin-components/update-category/update-category.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { PenguinGreetingsComponent } from '../common-components/penguin-greeting
     ViewProductsComponent,
     UpdateProductComponent,
     AboutSectionComponent,
-    PenguinGreetingsComponent
+    PenguinGreetingsComponent,
+    UpdateCategoryComponent
   ],
   imports: [
     CommonModule,

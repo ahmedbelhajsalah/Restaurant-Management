@@ -24,4 +24,10 @@ public interface AdminService {
     ProductDto getProductById(Long productId);
 
     ProductDto updateProduct(Long productId, ProductDto productDto) throws IOException;
+
+    void deleteCategory(Long categoryId);
+
+    CategoryDto updateCategory(Long categoryId, CategoryDto categoryDto) throws IOException;
+
+    CategoryDto getCategoryById(Long categoryId);
 }

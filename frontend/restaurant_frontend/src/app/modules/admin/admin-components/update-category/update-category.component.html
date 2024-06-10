@@ -1,6 +1,6 @@
 <div>
     <section >
-    <form class="form-class" [formGroup]="productForm" (ngSubmit)="updateProduct()">
+    <form class="form-class" [formGroup]="categoryForm" (ngSubmit)="updateCategory()">
         <h2>Update Product</h2>
         <input type="file" class="file-upload" formControlName="img" (change)="onFileSelected($event)">
         <img *ngIf="imagePreview" [src]="imagePreview" class="selected-image" alt="Selected Image">
@@ -14,17 +14,11 @@
       <mat-form-field appearance="outline">
         <input matInput 
         type="text" 
-        placeholder="Price" 
-        formControlName="price">
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <input matInput 
-        type="text" 
         placeholder="Description" 
         formControlName="description">
       </mat-form-field>
       
-      <button type="submit" mat-raised-button color="primary" [disabled]="!productForm.valid">Submit</button>
+      <button type="submit" mat-raised-button color="primary" [disabled]="!categoryForm.valid">Submit</button>
     </form>
   </section>
 </div>

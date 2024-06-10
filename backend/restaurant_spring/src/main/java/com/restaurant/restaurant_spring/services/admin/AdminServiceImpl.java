@@ -106,5 +106,39 @@ public class AdminServiceImpl implements AdminService{
         return null;
     }
 
+    @Override
+    public void deleteCategory(Long categoryId) {
+        Optional<Category> category = categoryRepository.findById(categoryId);
+        if(category.isPresent()){
+            categoryRepository.deleteById(categoryId);
+        } else {
+            throw new IllegalArgumentException("Category with id: " + categoryId + " not found");
+        }
+    }
 
+    @Override
+    public CategoryDto updateCategory(Long categoryId, CategoryDto categoryDto) throws IOException {
+        Optional<Category> optionalCategory = categoryRepository.findById(categoryId);
+        System.out.println("hereeeeeeeeeeeeeeeeeeeeeeeeee");
+        if(optionalCategory.isPresent()){
+            Category category = optionalCategory.get();
+            category.setName(categoryDto.getName());
+            category.setDescription(categoryDto.getDescription());
+            if(optionalCategory.get().getImg() != null){
+                category.setImg(categoryDto.getImg().getBytes());
+                System.out.println(category);
+            }
+            Category updatedCategory = categoryRepository.save(category);
+            CategoryDto updatedCategoryDto = new CategoryDto();
+            updatedCategoryDto.setId(updatedCategory.getId());
+            return updatedCategoryDto;
+        }
+        return null;
+    }
+
+    @Override
+    public CategoryDto getCategoryById(Long categoryId) {
+        Optional<Category> optionalCategory = categoryRepository.findById(categoryId);
+        return optionalCategory.map(Category::getCategoryDto).orElse(null);
+    }
 }
