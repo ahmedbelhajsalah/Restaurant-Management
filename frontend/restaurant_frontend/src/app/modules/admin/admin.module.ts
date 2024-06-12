@@ -24,6 +24,8 @@ import { UpdateProductComponent } from './admin-components/update-product/update
 import { AboutSectionComponent } from '../common-components/about-section/about-section.component';
 import { PenguinGreetingsComponent } from '../common-components/penguin-greetings/penguin-greetings.component';
 import { UpdateCategoryComponent } from './admin-components/update-category/update-category.component';
+import { RatingStarsComponent } from '../common-components/rating-stars/rating-stars.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { UpdateCategoryComponent } from './admin-components/update-category/upda
     UpdateProductComponent,
     AboutSectionComponent,
     PenguinGreetingsComponent,
-    UpdateCategoryComponent
+    UpdateCategoryComponent,
+    RatingStarsComponent
   ],
   imports: [
     CommonModule,
@@ -51,11 +54,14 @@ import { UpdateCategoryComponent } from './admin-components/update-category/upda
     MatSortModule,
     MatCardModule,
     MatProgressBarModule,
-    MatDividerModule
+    MatDividerModule,
+    FontAwesomeModule
   ],
   exports: [
     AboutSectionComponent,
-    PenguinGreetingsComponent
+    PenguinGreetingsComponent,
+    RatingStarsComponent,
+    FontAwesomeModule
   ],
 })
 export class AdminModule { }

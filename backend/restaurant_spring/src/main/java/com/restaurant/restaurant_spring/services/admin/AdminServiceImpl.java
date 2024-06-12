@@ -95,6 +95,7 @@ public class AdminServiceImpl implements AdminService{
             product.setName(productDto.getName());
             product.setDescription(productDto.getDescription());
             product.setPrice(productDto.getPrice());
+            product.setRating(productDto.getRating());
             if(productDto.getImg() != null){
                 product.setImg(productDto.getImg().getBytes());
             }

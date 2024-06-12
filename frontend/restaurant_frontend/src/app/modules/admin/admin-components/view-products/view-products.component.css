@@ -39,3 +39,15 @@
   height: 70vh;
     animation: zoomInOut 2s infinite;
 }
+
+.star-class{
+  margin-right: 5%;
+}
+.subtitle {
+  width: 100%;
+  margin-left: 10px;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  margin-left: 20px;
+}

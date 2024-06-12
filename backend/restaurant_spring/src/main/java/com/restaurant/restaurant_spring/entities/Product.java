@@ -21,6 +21,8 @@ public class Product {
 
     private String description;
 
+    private Number rating;
+
     @Lob
     @Column(columnDefinition = "longblob")
     private byte[] img;
@@ -38,6 +40,7 @@ public class Product {
         productDto.setReturnedImg(img);
         productDto.setDescription(description);
         productDto.setPrice(price);
+        productDto.setRating(rating);
         productDto.setCategoryId(category.getId());
         productDto.setCategoryName(category.getName());
         return productDto;

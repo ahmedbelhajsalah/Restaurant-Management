@@ -1,0 +1,23 @@
+#container {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+    margin-top: 5%;
+  }
+  
+  fa-icon {
+    color: gray;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+  
+    &.rated {
+      color: orange; /* Apply the rated color */
+    }
+  
+    &:hover,
+    &:hover ~ fa-icon {
+      color: orange; /* Apply hover color */
+    }
+  }
+  

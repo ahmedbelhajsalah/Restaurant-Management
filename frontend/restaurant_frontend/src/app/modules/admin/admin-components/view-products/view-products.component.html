@@ -7,8 +7,8 @@
     <mat-card class="products-card" *ngFor="let product of products" >
       <mat-card-header>
         <mat-card-title-group>
-          <mat-card-title style="width: 100%; margin-left: 50%;">{{ product.name }}</mat-card-title>
-        <mat-card-subtitle style="width: 100%; margin-left: 50%;">{{ product.description }}</mat-card-subtitle>
+          <mat-card-title style="width: 100%; margin-left: 10px;">{{ product.name }}</mat-card-title>
+        <mat-card-subtitle class="subtitle">{{ product.description }}</mat-card-subtitle>
         </mat-card-title-group>
           <mat-card-subtitle> <img [src]="product.returnedImg" style="height: 150px; width: 200px;border-radius: 20% 20% 20% 20%;"></mat-card-subtitle>
       </mat-card-header>
@@ -16,13 +16,17 @@
           <mat-divider style="margin-bottom: 2%;"></mat-divider>
         </mat-card-content>
         <div class="button-container">
+          <div class="star-class">
+            <app-rating-stars></app-rating-stars>
+          </div>
+          <button mat-button >Rate this Restaurant</button>
           <button mat-raised-button style="background: linear-gradient(90deg, rgb(103, 169, 244), rgb(235, 248, 248));" routerLink="/admin/products/updateProduct/{{product.id}}">Update</button>
           <button mat-raised-button style="background: linear-gradient(-90deg, rgb(238, 55, 55), rgb(235, 248, 248));" (click)="onDeleteProduct(product.id)">Delete</button>
         </div>
       </mat-card>
     </div>
     <div *ngIf="noProductAvailable()" class="no-products-class">
-      <h3>This Category does not have any Products 🥲</h3>
+      <h3>We still don't have any Restaurant in this category 🥲</h3>
     </div>
     </div>
     
