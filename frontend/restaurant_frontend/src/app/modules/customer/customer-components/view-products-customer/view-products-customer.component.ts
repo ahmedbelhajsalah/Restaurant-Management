@@ -88,4 +88,3 @@ applyFilter(event: Event) {
 }
 
 }
-

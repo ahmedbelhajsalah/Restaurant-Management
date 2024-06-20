@@ -1,0 +1,16 @@
+/* display-stars.component.css */
+.stars .star {
+  color: orange;
+  margin-right: 2px;
+}
+
+  
+  .fa-icon {
+    color: #ddd; /* Default star color */
+    margin-right: 5px;
+  }
+  
+  .fa-icon.filled {
+    color: #ffca28; /* Filled star color */
+  }
+  

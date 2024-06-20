@@ -18,6 +18,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { AboutSectionComponent } from './modules/common-components/about-section/about-section.component';
 import { AdminModule } from './modules/admin/admin.module';
 import { PenguinGreetingsComponent } from './modules/common-components/penguin-greetings/penguin-greetings.component';
+import { DisplayStarsComponent } from './modules/common-components/display-stars/display-stars.component';
 
 
 

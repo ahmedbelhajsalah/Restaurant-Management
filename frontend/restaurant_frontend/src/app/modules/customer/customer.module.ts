@@ -17,12 +17,13 @@ import { ViewProductsCustomerComponent } from './customer-components/view-produc
 import { AdminModule } from '../admin/admin.module';
 import { RatingDialogComponent } from './customer-components/rating-dialog/rating-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { DisplayStarsComponent } from '../common-components/display-stars/display-stars.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     ViewProductsCustomerComponent,
-    RatingDialogComponent
+    RatingDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -38,7 +39,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatProgressBarModule,
     MatDividerModule,
     AdminModule,
-    MatDialogModule
+    MatDialogModule,
   ]
 })
 export class CustomerModule { }

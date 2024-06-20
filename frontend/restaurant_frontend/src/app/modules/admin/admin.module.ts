@@ -26,6 +26,7 @@ import { PenguinGreetingsComponent } from '../common-components/penguin-greeting
 import { UpdateCategoryComponent } from './admin-components/update-category/update-category.component';
 import { RatingStarsComponent } from '../common-components/rating-stars/rating-stars.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DisplayStarsComponent } from '../common-components/display-stars/display-stars.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AboutSectionComponent,
     PenguinGreetingsComponent,
     UpdateCategoryComponent,
-    RatingStarsComponent
+    RatingStarsComponent,
+    DisplayStarsComponent
   ],
   imports: [
     CommonModule,
@@ -61,7 +63,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AboutSectionComponent,
     PenguinGreetingsComponent,
     RatingStarsComponent,
-    FontAwesomeModule
+    FontAwesomeModule,
+    DisplayStarsComponent
   ],
 })
 export class AdminModule { }

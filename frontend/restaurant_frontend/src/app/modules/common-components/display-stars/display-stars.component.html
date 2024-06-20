@@ -1,0 +1,4 @@
+<!-- display-stars.component.html -->
+<div class="stars">
+  <fa-icon *ngFor="let star of stars" [icon]="star <= rating ? faStarSolid : faStarRegular" class="star"></fa-icon>
+</div>

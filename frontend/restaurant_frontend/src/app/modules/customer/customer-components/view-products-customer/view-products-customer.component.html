@@ -18,7 +18,7 @@
         <mat-divider style="margin-bottom: 2%;"></mat-divider>
         <div class="rating-button-container">
           <div *ngIf="product.averageRating !== undefined">
-            <p>Customers Rating: {{ product.averageRating }} / 5 ⭐</p>
+            Customers Rating: <app-display-stars [rating]="product.averageRating"></app-display-stars>
           </div>
           <button mat-button (click)="openDialog(product.id)">Rate this Restaurant</button>
         </div>
