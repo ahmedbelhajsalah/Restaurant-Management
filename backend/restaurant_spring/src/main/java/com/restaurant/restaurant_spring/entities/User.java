@@ -29,6 +29,9 @@ public class User implements UserDetails {
 
     private UserRole userRole;
 
+    @OneToMany(mappedBy = "user")
+    private List<Rating> ratings;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(userRole.name()));

@@ -1,0 +1,13 @@
+<div class="dialog-class">
+<h2 mat-dialog-title>Rate The Restaurant</h2>
+<mat-dialog-content>
+    <h3>Add your Rating:</h3>
+    <div class="stars-container">
+        <app-rating-stars (ratingChanged)="onRatingChanged($event)"></app-rating-stars>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="applyRating()">Apply</button>
+</mat-dialog-actions>
+</div>

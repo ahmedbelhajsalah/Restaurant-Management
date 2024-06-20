@@ -1,0 +1,14 @@
+::ng-deep .mat-mdc-dialog-container {
+    --mdc-dialog-container-color: rgb(203, 225, 223);
+  }
+
+.dialog-class{
+    text-align: center;
+}
+
+.stars-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }

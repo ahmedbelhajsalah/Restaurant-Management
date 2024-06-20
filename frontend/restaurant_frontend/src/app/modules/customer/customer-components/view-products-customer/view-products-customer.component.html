@@ -1,0 +1,31 @@
+<div>
+  <mat-form-field class="filter">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. restaurant gammart .." #input>
+  </mat-form-field>
+  <div *ngIf="!noProductAvailable()">
+    <mat-card class="products-card" *ngFor="let product of products">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title style="width: 100%; margin-left: 10px;">{{ product.name }}</mat-card-title>
+          <mat-card-subtitle class="subtitle">{{ product.description }}</mat-card-subtitle>
+        </mat-card-title-group>
+        <mat-card-subtitle>
+          <img [src]="product.returnedImg" style="height: 150px; width: 200px; border-radius: 20%;">
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-divider style="margin-bottom: 2%;"></mat-divider>
+        <div class="rating-button-container">
+          <div *ngIf="product.averageRating !== undefined">
+            <p>Customers Rating: {{ product.averageRating }} / 5 ⭐</p>
+          </div>
+          <button mat-button (click)="openDialog(product.id)">Rate this Restaurant</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div *ngIf="noProductAvailable()" class="no-products-class">
+    <h3>We still don't have any Restaurant in this category 🥲</h3>
+  </div>
+</div>

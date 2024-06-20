@@ -58,6 +58,11 @@ export class StorageService {
     return user ? user.name : '';
   }
 
+  static getUserId(): number{
+    const user = this.getUser();
+    return user ? user.id : '';
+  }
+
   static logout(){
     if(typeof localStorage !== 'undefined'){
       window.localStorage.removeItem(USER_KEY);

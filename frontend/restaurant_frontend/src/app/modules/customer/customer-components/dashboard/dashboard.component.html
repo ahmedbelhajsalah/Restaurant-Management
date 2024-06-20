@@ -1,20 +1,32 @@
-<div >
-    <mat-form-field class="category-card">
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. restaurant gammart .." #input>
-      </mat-form-field>
-    <mat-card class="category-card" *ngFor="let category of categories">
+<mat-form-field class="filter">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. restaurant gammart .." #input>
+</mat-form-field>
+<div class="home-page">
+  <div class="cards-container">
+    <div class="row-class">
+      <mat-card class="category-card" *ngFor="let category of categories">
         <mat-card-header>
-            <mat-card-subtitle> <img [src]="category.returnedImg" style="height: 150px; width: 200px;"></mat-card-subtitle>
-          <mat-card-title>{{ category.name }}</mat-card-title>
+          <mat-card-title-group>
+            <mat-card-title style="width: 100%; margin-left: 10px;">{{ category.name }}</mat-card-title>
+            <mat-card-subtitle class="subtitle">{{ category.description }}</mat-card-subtitle>
+          </mat-card-title-group>
+          <mat-card-subtitle>
+            <img [src]="category.returnedImg" class="img-class">
+          </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <p>{{ category.description }}</p>
           <mat-divider></mat-divider>
         </mat-card-content>
-        <mat-card-actions style="margin-left: 60%; gap: 20px;">
-          <button mat-button (click)="goToCustomerViewProducts(category.id)">View Products</button>
+        <mat-card-actions style="margin-left: 70%;">
+          <button mat-button (click)="goToCustomerViewProducts(category.id)">View Restaurants</button>
         </mat-card-actions>
-       
       </mat-card>
     </div>
+  </div>
+  <div class="text-container">
+    <app-penguin-greetings></app-penguin-greetings>
+  </div>
+</div>
+
+<app-about-section style="margin-top: 5%;"></app-about-section>

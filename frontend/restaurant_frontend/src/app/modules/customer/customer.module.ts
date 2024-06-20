@@ -13,10 +13,16 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatCardModule} from '@angular/material/card';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatDividerModule} from '@angular/material/divider';
+import { ViewProductsCustomerComponent } from './customer-components/view-products-customer/view-products-customer.component';
+import { AdminModule } from '../admin/admin.module';
+import { RatingDialogComponent } from './customer-components/rating-dialog/rating-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    ViewProductsCustomerComponent,
+    RatingDialogComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +36,9 @@ import {MatDividerModule} from '@angular/material/divider';
     MatSortModule,
     MatCardModule,
     MatProgressBarModule,
-    MatDividerModule
+    MatDividerModule,
+    AdminModule,
+    MatDialogModule
   ]
 })
 export class CustomerModule { }

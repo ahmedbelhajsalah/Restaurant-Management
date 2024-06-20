@@ -7,6 +7,8 @@ import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.util.List;
+
 @Entity
 @Data
 public class Product {
@@ -20,8 +22,6 @@ public class Product {
     private  String price;
 
     private String description;
-
-    private Number rating;
 
     @Lob
     @Column(columnDefinition = "longblob")
@@ -40,9 +40,11 @@ public class Product {
         productDto.setReturnedImg(img);
         productDto.setDescription(description);
         productDto.setPrice(price);
-        productDto.setRating(rating);
         productDto.setCategoryId(category.getId());
         productDto.setCategoryName(category.getName());
         return productDto;
     }
+
+    @OneToMany(mappedBy = "product")
+    private List<Rating> ratings;
 }

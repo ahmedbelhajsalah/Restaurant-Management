@@ -21,12 +21,10 @@
 
   <mat-toolbar *ngIf="isCustomer">
     <mat-toolbar-row>
-      <span>Hello {{userName}} 😀</span>
+      <a routerLink="customer/dashboard" class="link-style"><span>Hello {{userName}} 😀</span></a>
       <span class="toolbar-spacer"></span>
-      <button mat-button color="primary" (click)="goToCustomerDashboard()">Dashboard</button>
-      <button mat-button color="primary" (click)="goToCustomerCategory()">Category</button>
-      <button mat-button color="primary" (click)="goToCustomerProduct()">Product</button>
-      <button mat-button color="primary" (click)="logout()">Logout</button>
+      <button mat-button (click)="goToCustomerDashboard()">Dashboard</button>
+      <button mat-raised-button color="warn" (click)="logout()">Logout</button>
     </mat-toolbar-row>
   </mat-toolbar>
 </div>

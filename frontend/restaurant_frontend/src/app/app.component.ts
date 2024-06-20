@@ -45,11 +45,11 @@ export class AppComponent implements OnInit {
     }
 
   goToCustomerDashboard() {
-    this.router.navigate(['admin/dashboard']); 
+    this.router.navigate(['customer/dashboard']); 
     }
   
   goToCustomerCategory() {
-    this.router.navigate(['admin/category']);
+    this.router.navigate(['customer/category']);
     }
   goToAdminProduct() {
     this.router.navigate(['admin/product']);

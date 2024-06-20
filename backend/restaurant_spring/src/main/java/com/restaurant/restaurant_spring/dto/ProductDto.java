@@ -28,5 +28,4 @@ public class ProductDto {
 
     private String categoryName;
 
-    private Number rating;
 }

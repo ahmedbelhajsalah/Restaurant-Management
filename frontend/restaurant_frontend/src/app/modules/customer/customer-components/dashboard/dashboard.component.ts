@@ -46,6 +46,6 @@ applyFilter(event: Event) {
 }
 
 goToCustomerViewProducts(categoryId: string) {
-  this.router.navigate([`admin/products/${categoryId}`]);
+  this.router.navigate([`customer/products/${categoryId}`]);
   }
 }

@@ -2,15 +2,9 @@ import { Component } from '@angular/core';
 import { AdminService } from '../../admin-services/admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from '../dashboard/dashboard.component';
+import { Product } from '../../../customer/customer-service/customer.service';
 
-export interface Product{
-  id:number;
-  name: string;
-  returnedImg:string;
-  description: string;
-  price: number;
-  categoryId: number
-}
+
 
 @Component({
   selector: 'app-view-products',
