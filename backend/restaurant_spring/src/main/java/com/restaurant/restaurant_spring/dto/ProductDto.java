@@ -1,12 +1,9 @@
 package com.restaurant.restaurant_spring.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.restaurant.restaurant_spring.entities.Category;
-import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Data
 public class ProductDto {
@@ -20,7 +17,13 @@ public class ProductDto {
 
     private String description;
 
+    private String detailedDescription;
+
     private byte[] returnedImg;
+
+    private List<MultipartFile> additionalImages;
+
+    private List<byte[]> returnedAdditionalImages;
 
     private MultipartFile img;
 

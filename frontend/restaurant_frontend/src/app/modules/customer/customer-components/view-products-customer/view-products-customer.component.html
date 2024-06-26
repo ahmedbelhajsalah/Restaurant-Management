@@ -20,7 +20,10 @@
           <div *ngIf="product.averageRating !== undefined">
             Customers Rating: <app-display-stars [rating]="product.averageRating"></app-display-stars>
           </div>
-          <button mat-button (click)="openDialog(product.id)">Rate this Restaurant</button>
+          <div class="button-container">
+            <button mat-button (click)="onShowDetails(product.id)" style="background: linear-gradient(90deg, rgb(159, 218, 241), rgb(235, 248, 248));">Show Details</button>
+            <button mat-button (click)="openDialog(product.id)" style="background: linear-gradient(-90deg, rgb(249, 129, 129), rgb(235, 248, 248));">Rate this Restaurant</button>
+          </div>
         </div>
       </mat-card-content>
     </mat-card>

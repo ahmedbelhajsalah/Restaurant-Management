@@ -63,3 +63,11 @@
 .rating-button-container p {
   margin: 0;
 }
+.rating-button-container .button-container {
+  display: flex;
+  gap: 5px;
+}
+
+.rating-button-container button {
+  margin-left: auto;
+}

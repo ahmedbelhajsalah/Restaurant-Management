@@ -14,15 +14,17 @@
       </mat-card-header>
         <mat-card-content>
           <mat-divider style="margin-bottom: 2%;"></mat-divider>
-        </mat-card-content>
-        <div class="button-container">
-          <div class="star-class">
-            <app-rating-stars></app-rating-stars>
+        
+        <div class="rating-button-container">
+          <div *ngIf="product.averageRating !== undefined">
+            Customers Rating: <app-display-stars [rating]="product.averageRating"></app-display-stars>
           </div>
-          <button mat-button >Rate this Restaurant</button>
+          <div class="button-container">
           <button mat-raised-button style="background: linear-gradient(90deg, rgb(103, 169, 244), rgb(235, 248, 248));" routerLink="/admin/products/updateProduct/{{product.id}}">Update</button>
           <button mat-raised-button style="background: linear-gradient(-90deg, rgb(238, 55, 55), rgb(235, 248, 248));" (click)="onDeleteProduct(product.id)">Delete</button>
         </div>
+      </div>
+    </mat-card-content>
       </mat-card>
     </div>
     <div *ngIf="noProductAvailable()" class="no-products-class">

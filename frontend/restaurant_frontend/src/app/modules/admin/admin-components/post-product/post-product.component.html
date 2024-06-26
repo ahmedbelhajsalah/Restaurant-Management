@@ -1,9 +1,15 @@
 <div>
     <section >
     <form class="form-class" [formGroup]="productForm" (ngSubmit)="onSubmit()">
-        <h2>Add Product</h2>
+        <h2>Add Restaurant</h2>
         <input type="file" class="file-upload" formControlName="img" (change)="onFileSelected($event)">
         <img *ngIf="imagePreview" [src]="imagePreview" class="selected-image" alt="Selected Image">
+        <input type="file" class="file-upload" (change)="onAdditionalFilesSelected($event)" multiple>
+            <div *ngIf="additionalImagesPreview.length > 0">
+                <div *ngFor="let img of additionalImagesPreview">
+                    <img [src]="img" class="selected-image" alt="Additional Image">
+                </div>
+            </div>
       <mat-form-field appearance="outline">
         <input matInput 
         type="text" 
@@ -22,6 +28,11 @@
         placeholder="Description" 
         formControlName="description">
       </mat-form-field>
+      <mat-form-field appearance="outline">
+        <textarea matInput 
+        placeholder="Detailed Description" 
+        formControlName="detailedDescription"></textarea>
+    </mat-form-field>
       
       <button type="submit" mat-raised-button color="primary" [disabled]="!productForm.valid">Submit</button>
     </form>

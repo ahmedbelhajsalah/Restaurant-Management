@@ -52,6 +52,16 @@ public class AdminServiceImpl implements AdminService{
             Product product = new Product();
             BeanUtils.copyProperties(productDto,product);
             product.setImg(productDto.getImg().getBytes());
+            List<byte[]> additionalImages = productDto.getAdditionalImages().stream()
+                    .map(multipartFile -> {
+                        try {
+                            return multipartFile.getBytes();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    })
+                    .collect(Collectors.toList());
+            product.setAdditionalImages(additionalImages);
             product.setCategory(optionalCategory.get());
             Product createdProduct = productRepository.save(product);
             ProductDto createdProductDto = new ProductDto();

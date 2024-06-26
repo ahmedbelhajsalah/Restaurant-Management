@@ -21,13 +21,15 @@ export class PostProductComponent implements OnInit {
   selectedFile!: File ;
   imagePreview!: string | ArrayBuffer | null;
   categoryId: any = this.activatedRouter.snapshot.params['categoryId'];
-
+  additionalImages: File[] = [];
+  additionalImagesPreview: (string | ArrayBuffer| null)[] = [];
 
   ngOnInit(): void {
     this.productForm = this.fb.group({
       name: [null, [Validators.required]],
       price: [null, [Validators.required, Validators.pattern("^[0-9]*$")]],
       description: [null, [Validators.required]],
+      detailedDescription: [null, [Validators.required]],
       img: [null, [Validators.required]],
     });
   }
@@ -35,6 +37,20 @@ export class PostProductComponent implements OnInit {
   onFileSelected(event: any){
     this.selectedFile = event.target.files[0];
     this.previewImage();
+  }
+
+  onAdditionalFilesSelected(event: any): void {
+    const files = Array.from(event.target.files) as File[];
+    this.additionalImages.push(...files);
+    
+
+    files.forEach(file => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.additionalImagesPreview.push(reader.result);
+      };
+      reader.readAsDataURL(file);
+    });
   }
 
   previewImage(){
@@ -50,7 +66,12 @@ export class PostProductComponent implements OnInit {
     formData.append('img', this.selectedFile);
     formData.append('name', this.productForm.get('name')?.value);
     formData.append('price', this.productForm.get('price')?.value);
-    formData.append('description', this.productForm.get('description')?.value);
+    formData.append('description', this.productForm.get('description')?.value); 
+    formData.append('detailedDescription', this.productForm.get('detailedDescription')?.value); 
+    this.additionalImages.forEach((file, index) => {
+      formData.append(`additionalImages[${index}]`, file);
+      
+    });
     this.adminService.postProductById(this.categoryId,formData).subscribe(data =>{
       alert("Product posted successfully");
     },error => {

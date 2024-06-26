@@ -27,6 +27,13 @@ public class Product {
     @Column(columnDefinition = "longblob")
     private byte[] img;
 
+    private String detailedDescription;
+
+    @ElementCollection
+    @CollectionTable(name = "product_images", joinColumns = @JoinColumn(name = "product_id"))
+    @Column(name = "image", columnDefinition = "longblob")
+    private List<byte[]> additionalImages;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "category_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -39,6 +46,8 @@ public class Product {
         productDto.setName(name);
         productDto.setReturnedImg(img);
         productDto.setDescription(description);
+        productDto.setDetailedDescription(detailedDescription);
+        productDto.setReturnedAdditionalImages(additionalImages);
         productDto.setPrice(price);
         productDto.setCategoryId(category.getId());
         productDto.setCategoryName(category.getName());

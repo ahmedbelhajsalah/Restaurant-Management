@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AdminService } from '../../admin-services/admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from '../dashboard/dashboard.component';
-import { Product } from '../../../customer/customer-service/customer.service';
+import { CustomerService, Product } from '../../../customer/customer-service/customer.service';
 
 
 
@@ -14,7 +14,7 @@ import { Product } from '../../../customer/customer-service/customer.service';
 export class ViewProductsComponent {
 
 
-  constructor(private adminService: AdminService, private router: Router,
+  constructor(private customerService: CustomerService,private adminService: AdminService, private router: Router,
     private activatedRouter: ActivatedRoute
   ){}
 
@@ -41,6 +41,18 @@ getAllProductsBycategory() {
       return element;
     });
     this.products = [...this.originalProducts];
+    this.products.forEach(product => {
+      this.getAvgRating(product.id);
+    });
+  });
+}
+
+getAvgRating(productId: number) {
+  this.customerService.getAverageRating(productId).subscribe(averageRate => {
+    const product = this.products.find(p => p.id === productId);
+      if (product) {
+        product.averageRating = averageRate;
+      }
   });
 }
 

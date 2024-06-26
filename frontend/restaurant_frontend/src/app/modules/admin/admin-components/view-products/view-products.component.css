@@ -7,13 +7,23 @@
     border-radius: 5% 5% 5% 5%;
 }
 
-.button-container {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 2%;
-    margin-right: 4%;
-    gap: 4px;
-  }
+.rating-button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rating-button-container p {
+  margin: 0;
+}
+.rating-button-container .button-container {
+  display: flex;
+  gap: 5px;
+}
+
+.rating-button-container button {
+  margin-left: auto;
+}
   .filter{
     width: 50%;
     align-items: left;

@@ -39,6 +39,7 @@ export class AdminService {
   }
 
   postProductById(productId: number, categoryDto: any): Observable<any>{
+    console.log('prod', categoryDto)
     return this.http.post<any>(BASIC_URL +`api/admin/product/${productId}`, categoryDto,{
       headers: this.creatAuthorizationHeader()
     });
