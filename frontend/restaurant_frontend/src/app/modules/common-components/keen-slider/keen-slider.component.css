@@ -1,0 +1,31 @@
+[class^="number-slide"],
+[class*=" number-slide"] {
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  color: #fff;
+  font-weight: 500;
+  height: 400px;
+  max-height: 100vh;
+}
+
+.thumbnail .keen-slider__slide {
+  font-size: 30px;
+  margin-top: 10px;
+  height: 200px;
+}
+.thumbnail .keen-slider__slide {
+  cursor: pointer;
+}
+.thumbnail .keen-slider__slide.active {
+  border: 2px dashed black;
+}
+.keen-slider__slide img {
+  width: 100%;
+  height: auto;
+  max-width: 600px;
+  max-height: 600px;
+  object-fit: cover;
+}

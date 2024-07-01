@@ -1,0 +1,25 @@
+.product-name-container {
+    text-align: center;
+    margin-top: 2%;
+}
+
+.content-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 3%;
+}
+
+.slider-container {
+    width: 50%;
+}
+
+.product-desc-container {
+    flex: 1;
+}
+
+.slider-container,
+.product-desc-container {
+    height: 100%;
+    margin-left: 3%;
+}

@@ -73,7 +73,7 @@ export class PostProductComponent implements OnInit {
       
     });
     this.adminService.postProductById(this.categoryId,formData).subscribe(data =>{
-      alert("Product posted successfully");
+      alert("Restaurant posted successfully");
     },error => {
       alert("Something went wrong");
     })

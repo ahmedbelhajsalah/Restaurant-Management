@@ -18,12 +18,16 @@ import { AdminModule } from '../admin/admin.module';
 import { RatingDialogComponent } from './customer-components/rating-dialog/rating-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DisplayStarsComponent } from '../common-components/display-stars/display-stars.component';
+import { ShowDetailsComponent } from './customer-components/show-details/show-details.component';
+import { KeenSliderComponent } from '../common-components/keen-slider/keen-slider.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     ViewProductsCustomerComponent,
     RatingDialogComponent,
+    ShowDetailsComponent,
+    KeenSliderComponent
   ],
   imports: [
     CommonModule,

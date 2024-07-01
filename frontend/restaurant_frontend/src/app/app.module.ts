@@ -19,6 +19,7 @@ import { AboutSectionComponent } from './modules/common-components/about-section
 import { AdminModule } from './modules/admin/admin.module';
 import { PenguinGreetingsComponent } from './modules/common-components/penguin-greetings/penguin-greetings.component';
 import { DisplayStarsComponent } from './modules/common-components/display-stars/display-stars.component';
+import { KeenSliderComponent } from './modules/common-components/keen-slider/keen-slider.component';
 
 
 

@@ -9,6 +9,3 @@ html, body {
   background-attachment: fixed; 
  }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.dialog-class .mat-dialog-container{
-  background-color: red;
-}

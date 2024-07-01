@@ -15,4 +15,6 @@ public interface CustomerService {
     Rating addRating(Long userId, Long productId, int ratingValue) throws IOException;
 
     double getAverageRating(Long productId);
+
+    ProductDto getProductById(Long productId);
 }

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { StorageService } from '../../../auth-services/storage-service/storage.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 const BASIC_URL= ["http://localhost:8080/"];
 
@@ -43,6 +43,13 @@ export class CustomerService {
       headers: this.creatAuthorizationHeader()
     });
   }
+
+  getProductById(productId: number): Observable<any>{
+    return this.http.get<any>(BASIC_URL +`api/customer/product/${productId}`,{
+      headers: this.creatAuthorizationHeader()
+    });
+  }
+
 }
 export interface Rating {
   userId: number;

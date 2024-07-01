@@ -88,7 +88,7 @@ applyFilter(event: Event) {
 }
 
 onShowDetails(productId: number){
-  this.router.navigate([`customer/products/${productId}`])
+  this.router.navigate([`customer/products/${this.categoryId}/${productId}`])
 }
 
 }

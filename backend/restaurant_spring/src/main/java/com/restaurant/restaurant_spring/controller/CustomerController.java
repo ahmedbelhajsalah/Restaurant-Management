@@ -46,4 +46,10 @@ public class CustomerController {
         double averageRating = customerService.getAverageRating(productId);
         return ResponseEntity.ok(averageRating);
     }
+    @GetMapping("/product/{productId}")
+    public ResponseEntity<?> getProductById(@PathVariable Long productId) throws IOException {
+        ProductDto productDto = customerService.getProductById(productId);
+        if(productDto == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(productDto);
+    }
 }

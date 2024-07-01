@@ -62,4 +62,10 @@ public class CustomerServiceImpl implements CustomerService{
         return Math.round(average * 2) / 2.0; // Round to the nearest 0.5
     }
 
+    @Override
+    public ProductDto getProductById(Long productId) {
+        Optional<Product> optionalProduct = productRepository.findById(productId);
+        return optionalProduct.map(Product::getProductDto).orElse(null);
+    }
+
 }

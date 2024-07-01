@@ -31,6 +31,7 @@ getAllCategories() {
       return element;
     });
     this.categories = [...this.originalCategories];
+    console.log('cat', this.categories)
   });
 }
 
