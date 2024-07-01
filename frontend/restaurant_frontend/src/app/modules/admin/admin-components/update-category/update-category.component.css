@@ -18,3 +18,9 @@
   .file-upload{
     align-items: left;
   }
+  .selected-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin: 5px;
+}

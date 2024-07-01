@@ -105,8 +105,21 @@ public class AdminServiceImpl implements AdminService{
             product.setName(productDto.getName());
             product.setDescription(productDto.getDescription());
             product.setPrice(productDto.getPrice());
+            product.setDetailedDescription(productDto.getDetailedDescription());
             if(productDto.getImg() != null){
                 product.setImg(productDto.getImg().getBytes());
+            }
+            if(productDto.getAdditionalImages() != null){
+                List<byte[]> additionalImages = productDto.getAdditionalImages().stream()
+                        .map(multipartFile -> {
+                            try {
+                                return multipartFile.getBytes();
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        })
+                        .collect(Collectors.toList());
+                product.setAdditionalImages(additionalImages);
             }
             Product updatedProduct = productRepository.save(product);
             ProductDto updatedProductDto = new ProductDto();
