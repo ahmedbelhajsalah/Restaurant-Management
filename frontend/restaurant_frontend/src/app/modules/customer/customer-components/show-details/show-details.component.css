@@ -6,7 +6,7 @@
 .content-container {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: stretch;
     margin-top: 3%;
 }
 
@@ -16,10 +16,34 @@
 
 .product-desc-container {
     flex: 1;
+    margin-right: 3%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 10px;
+    height: 100%;
 }
 
-.slider-container,
-.product-desc-container {
-    height: 100%;
-    margin-left: 3%;
+
+.product-desc-container p {
+    margin-bottom: 10px;
+}
+
+.book-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: flex-end;
+    margin-top: auto;
+}
+
+.book-button:hover {
+    background-color: #0056b3;
 }

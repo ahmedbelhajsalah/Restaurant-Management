@@ -1,0 +1,16 @@
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.dialog-content p {
+    margin: 0;
+}
+
+::ng-deep .mat-mdc-dialog-container {
+    --mdc-dialog-container-color: #fbfbfb;
+    --mdc-dialog-container-shape: 20px;
+  }

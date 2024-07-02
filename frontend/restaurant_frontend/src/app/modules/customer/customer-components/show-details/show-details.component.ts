@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CustomerService } from '../../customer-service/customer.service';
+import { MatDialog } from '@angular/material/dialog';
+import { BookDialogComponent } from '../../../common-components/book-dialog/book-dialog.component';
 
 @Component({
   selector: 'app-show-details',
@@ -8,6 +10,9 @@ import { CustomerService } from '../../customer-service/customer.service';
   styleUrl: './show-details.component.css'
 })
 export class ShowDetailsComponent implements OnInit {
+
+  readonly dialog = inject(MatDialog);
+  price: number= 0;
 
   constructor(private activatedRouter: ActivatedRoute, private customerService: CustomerService){}
   ngOnInit(): void {
@@ -27,8 +32,18 @@ export class ShowDetailsComponent implements OnInit {
         this.productAdditionalImages = data.returnedAdditionalImages.map((image: any) => 'data:image/jpeg;base64,' + image);
         this.ImagesCount = this.productAdditionalImages.map((_, index) => index);
         this.productAdditionalDescription = data.detailedDescription;
+        this.price = data.price
       }
     );
+  }
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(BookDialogComponent, {
+      width: '400px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: this.price,
+      panelClass: "book-dialog-class"
+    });
   }
 
 }
