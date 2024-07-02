@@ -20,6 +20,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { DisplayStarsComponent } from '../common-components/display-stars/display-stars.component';
 import { ShowDetailsComponent } from './customer-components/show-details/show-details.component';
 import { KeenSliderComponent } from '../common-components/keen-slider/keen-slider.component';
+import { BookDialogComponent } from '../common-components/book-dialog/book-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { KeenSliderComponent } from '../common-components/keen-slider/keen-slide
     ViewProductsCustomerComponent,
     RatingDialogComponent,
     ShowDetailsComponent,
-    KeenSliderComponent
+    KeenSliderComponent,
+    BookDialogComponent
   ],
   imports: [
     CommonModule,

@@ -7,9 +7,12 @@
     <mat-card class="products-card" *ngFor="let product of products">
       <mat-card-header>
         <mat-card-title-group>
-          <mat-card-title style="width: 100%; margin-left: 10px;">{{ product.name }}</mat-card-title>
+          <mat-card-title class="product-title">{{ product.name }} </mat-card-title>
+          <span class="price-class">price: {{product.price}} $</span>
           <mat-card-subtitle class="subtitle">{{ product.description }}</mat-card-subtitle>
+          
         </mat-card-title-group>
+        
         <mat-card-subtitle>
           <img [src]="product.returnedImg" style="height: 150px; width: 200px; border-radius: 20%;">
         </mat-card-subtitle>

@@ -71,3 +71,16 @@
 .rating-button-container button {
   margin-left: auto;
 }
+.product-title {
+  width: 100%;
+  margin-left: 10px;
+  flex-grow: 1;
+}
+
+.price-class{
+  margin-left: auto;
+  white-space: nowrap;
+  font-family: "Times New Roman", Times, serif;
+  color: rgb(75, 67, 67);
+  font-size: larger;
+}
