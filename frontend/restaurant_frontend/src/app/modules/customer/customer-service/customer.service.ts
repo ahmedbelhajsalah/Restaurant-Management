@@ -50,6 +50,12 @@ export class CustomerService {
     });
   }
 
+  postPaypal(priceToPay: Number): Observable<any>{
+    return this.http.post<any>(BASIC_URL +`api/customer/payment/create/${priceToPay}`, { responseType: 'text' },{
+      headers: this.creatAuthorizationHeader()
+    });
+  }
+
 }
 export interface Rating {
   userId: number;
