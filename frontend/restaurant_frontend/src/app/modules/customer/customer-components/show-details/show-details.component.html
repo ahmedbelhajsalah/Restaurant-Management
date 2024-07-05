@@ -11,3 +11,31 @@
         <button (click)="openDialog('300ms', '150ms')" class="book-button">BOOK NOW !</button>
     </div>
 </div>
+
+<!-- Feedback Section -->
+<div class="feedback-section">
+    <h2>Feedback</h2>
+    <div class="comment-input">
+        <input type="text" [(ngModel)]="newComment" placeholder="Write your comment...">
+        <button (click)="postComment()">Post</button>
+    </div>
+    <div class="comments-container">
+        <div *ngFor="let comment of comments" class="comment">
+            <p>{{comment.content}}</p>
+            <div class="comment-actions">
+                <button (click)="likeComment(comment.id)">Like ({{comment.likes}})</button>
+                <button (click)="toggleReplyInput(comment.id)">Reply</button>
+                <div *ngIf="replyingToCommentId === comment.id" class="reply-input">
+                    <input type="text" [(ngModel)]="replyContent" placeholder="Write your reply...">
+                    <button (click)="postReply(comment.id)">Post Reply</button>
+                </div>
+            </div>
+            <div *ngFor="let reply of comment.replies" class="reply">
+                <p>{{reply.content}}</p>
+                <div class="reply-actions">
+                    <button (click)="likeReply(reply.id)">Like ({{reply.likes}})</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

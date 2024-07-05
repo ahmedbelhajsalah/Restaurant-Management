@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { RatingDialogComponent } from '../rating-dialog/rating-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { StorageService } from '../../../../auth-services/storage-service/storage.service';
 
 @Component({
   selector: 'app-view-products-customer',
@@ -35,7 +36,7 @@ noProductAvailable(){
 }
 
 getAllProductsBycategory() {
-
+  
   this.customerService.getAllProductsByCategory(this.categoryId).subscribe(data => {
     this.originalProducts = data.map((element: any) => {
       element.returnedImg = 'data:image/jpeg;base64,' + element.returnedImg;

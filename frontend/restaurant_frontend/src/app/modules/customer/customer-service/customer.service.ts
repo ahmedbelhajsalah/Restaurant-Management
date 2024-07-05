@@ -1,73 +1,96 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { StorageService } from '../../../auth-services/storage-service/storage.service';
-import { Observable, of } from 'rxjs';
+  import { HttpClient, HttpHeaders } from '@angular/common/http';
+  import { Injectable } from '@angular/core';
+  import { StorageService } from '../../../auth-services/storage-service/storage.service';
+  import { Observable, of } from 'rxjs';
 
-const BASIC_URL= ["http://localhost:8080/"];
+  const BASIC_URL= ["http://localhost:8080/"];
 
-@Injectable({
-  providedIn: 'root'
-})
-export class CustomerService {
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class CustomerService {
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { }
 
-  creatAuthorizationHeader():HttpHeaders {
-    let authHeaders: HttpHeaders = new HttpHeaders();
-    return authHeaders.set(
-      "Authorization", "Bearer "+ StorageService.getToken()
-    )
+    creatAuthorizationHeader():HttpHeaders {
+      let authHeaders: HttpHeaders = new HttpHeaders();
+      return authHeaders.set(
+        "Authorization", "Bearer "+ StorageService.getToken()
+      )
+    }
+
+    getAllCategories(): Observable<any>{
+      return this.http.get<any>(BASIC_URL +"api/customer/categories",{
+        headers: this.creatAuthorizationHeader()
+      });
+    }
+
+    getAllProductsByCategory(categoryId: number): Observable<any>{
+      return this.http.get<any>(BASIC_URL +`api/customer/products/${categoryId}`,{
+        headers: this.creatAuthorizationHeader()
+      });
+    }
+
+    postRating(rating: Rating): Observable<Rating>{
+
+      return this.http.post<Rating>(BASIC_URL +`api/customer/product/rate`, rating,{
+        headers: this.creatAuthorizationHeader()
+      });
+    }
+
+    getAverageRating(productId: number): Observable<number>{
+      return this.http.get<number>(BASIC_URL +`api/customer/product/averageRating/${productId}`,{
+        headers: this.creatAuthorizationHeader()
+      });
+    }
+
+    getProductById(productId: number): Observable<any>{
+      return this.http.get<any>(BASIC_URL +`api/customer/product/${productId}`,{
+        headers: this.creatAuthorizationHeader()
+      });
+    }
+
+    postPaypal(priceToPay: Number): Observable<any>{
+      return this.http.post<any>(BASIC_URL +`api/customer/payment/create/${priceToPay}`, { responseType: 'text' },{
+        headers: this.creatAuthorizationHeader()
+      });
+    }
+    postComment(productId: number,userId: number, comment: string): Observable<any>{
+      return this.http.post<any>(BASIC_URL +`api/customer/product/createComment`, {
+        id: 0,
+        product_id: productId,
+        user_id: userId,
+        content: comment
+      },{
+        headers: this.creatAuthorizationHeader()
+      });
+    }
+    getCommentsByProductId(product_id: number): Observable<any>{
+      return this.http.get<any>(BASIC_URL +`api/customer/product/getAllCommentsByProductId/${product_id}`,{
+        headers: this.creatAuthorizationHeader()
+      });
+    }
+    postReply(commentId: number, userId: number, content: string): Observable<any> {
+      return this.http.post<any>(BASIC_URL + `api/customer/comment/reply`, {
+        comment_id: commentId,
+        user_id: userId,
+        content: content
+      }, {
+        headers: this.creatAuthorizationHeader()
+      });
+    }
+  }
+  export interface Rating {
+    userId: number;
+    productId: number;
+    rating: number;
   }
 
-  getAllCategories(): Observable<any>{
-    return this.http.get<any>(BASIC_URL +"api/customer/categories",{
-      headers: this.creatAuthorizationHeader()
-    });
+  export interface Product {
+    id: number;
+    name: string;
+    description: string;
+    price: string;
+    returnedImg: string;
+    averageRating?: number;
   }
-
-  getAllProductsByCategory(categoryId: number): Observable<any>{
-    return this.http.get<any>(BASIC_URL +`api/customer/products/${categoryId}`,{
-      headers: this.creatAuthorizationHeader()
-    });
-  }
-
-  postRating(rating: Rating): Observable<Rating>{
-
-    return this.http.post<Rating>(BASIC_URL +`api/customer/product/rate`, rating,{
-      headers: this.creatAuthorizationHeader()
-    });
-  }
-
-  getAverageRating(productId: number): Observable<number>{
-    return this.http.get<number>(BASIC_URL +`api/customer/product/averageRating/${productId}`,{
-      headers: this.creatAuthorizationHeader()
-    });
-  }
-
-  getProductById(productId: number): Observable<any>{
-    return this.http.get<any>(BASIC_URL +`api/customer/product/${productId}`,{
-      headers: this.creatAuthorizationHeader()
-    });
-  }
-
-  postPaypal(priceToPay: Number): Observable<any>{
-    return this.http.post<any>(BASIC_URL +`api/customer/payment/create/${priceToPay}`, { responseType: 'text' },{
-      headers: this.creatAuthorizationHeader()
-    });
-  }
-
-}
-export interface Rating {
-  userId: number;
-  productId: number;
-  rating: number;
-}
-
-export interface Product {
-  id: number;
-  name: string;
-  description: string;
-  price: string;
-  returnedImg: string;
-  averageRating?: number;
-}
