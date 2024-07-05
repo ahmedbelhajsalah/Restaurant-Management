@@ -1,19 +1,13 @@
 package com.restaurant.restaurant_spring.services.customer;
 
-import com.restaurant.restaurant_spring.dto.CategoryDto;
-import com.restaurant.restaurant_spring.dto.ProductDto;
-import com.restaurant.restaurant_spring.entities.Category;
-import com.restaurant.restaurant_spring.entities.Product;
-import com.restaurant.restaurant_spring.entities.Rating;
-import com.restaurant.restaurant_spring.entities.User;
-import com.restaurant.restaurant_spring.repositories.CategoryRepository;
-import com.restaurant.restaurant_spring.repositories.ProductRepository;
-import com.restaurant.restaurant_spring.repositories.RatingRepository;
-import com.restaurant.restaurant_spring.repositories.UserRepository;
+import com.restaurant.restaurant_spring.dto.*;
+import com.restaurant.restaurant_spring.entities.*;
+import com.restaurant.restaurant_spring.repositories.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -26,6 +20,8 @@ public class CustomerServiceImpl implements CustomerService{
     private final ProductRepository productRepository;
     public final RatingRepository ratingRepository;
     public final UserRepository userRepository;
+    private final CommentRepository commentRepository;
+    private final ReplyRepository replyRepository;
 
     @Override
     public List<CategoryDto> getAllCategories() {
@@ -66,6 +62,60 @@ public class CustomerServiceImpl implements CustomerService{
     public ProductDto getProductById(Long productId) {
         Optional<Product> optionalProduct = productRepository.findById(productId);
         return optionalProduct.map(Product::getProductDto).orElse(null);
+    }
+
+    @Override
+    public CommentDto saveComment(CommentDto commentDto) throws IOException {
+        Optional<Product> productOpt = productRepository.findById(commentDto.getProduct_id());
+        Optional<User> userOpt = userRepository.findById(commentDto.getUser_id());
+
+        if (productOpt.isPresent() && userOpt.isPresent()) {
+            Product product = productOpt.get();
+            User user = userOpt.get();
+
+            Comment comment = new Comment();
+            comment.setContent(commentDto.getContent());
+            comment.setUser(user);
+            comment.setProduct(product);
+
+
+            Comment createdComment = commentRepository.save(comment);
+
+            CommentDto createdCommentDto = new CommentDto();
+            createdCommentDto.setId(createdComment.getId());
+            createdCommentDto.setContent(createdComment.getContent());
+            createdCommentDto.setUser_id(createdComment.getUser().getId());
+            createdCommentDto.setProduct_id(createdComment.getProduct().getId());
+            return createdCommentDto;
+        }
+        return null;
+    }
+
+    @Override
+    public List<CommentDto> getAllCommentsByProductId(Long productId) {
+        return commentRepository.findAllByProductId(productId).stream().map(Comment::getCommentDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public ReplyDto postReply(ReplyDto replyDto) {
+        Optional<User> optionalUserDto = userRepository.findById(replyDto.getUser_id());
+        Optional<Comment> optionalComment = commentRepository.findById(replyDto.getComment_id());
+        if(optionalUserDto.isPresent() && optionalComment.isPresent()){
+            User user = optionalUserDto.get();
+            Comment comment = optionalComment.get();
+            Reply reply = new Reply();
+            reply.setContent(replyDto.getContent());
+            reply.setUser(user);
+            reply.setParentComment(comment);
+            Reply createdReplay = replyRepository.save(reply);
+            ReplyDto createdReplyDto = new ReplyDto();
+            createdReplyDto.setContent(createdReplay.getContent());
+            createdReplyDto.setId(createdReplay.getId());
+            createdReplyDto.setUser_id(user.getId());
+            createdReplyDto.setComment_id(comment.getId());
+            return createdReplyDto;
+        }
+        return null;
     }
 
 }
