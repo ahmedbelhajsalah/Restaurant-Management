@@ -1,6 +1,6 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CustomerService } from '../../customer-service/customer.service';
+import { Comment, CustomerService } from '../../customer-service/customer.service';
 import { MatDialog } from '@angular/material/dialog';
 import { BookDialogComponent } from '../../../common-components/book-dialog/book-dialog.component';
 import { StorageService } from '../../../../auth-services/storage-service/storage.service';
@@ -11,19 +11,16 @@ import { StorageService } from '../../../../auth-services/storage-service/storag
   styleUrl: './show-details.component.css'
 })
 export class ShowDetailsComponent implements OnInit {
-likeReply(arg0: any) {
-throw new Error('Method not implemented.');
-}
+
 replyingToCommentId: any;
 replyContent: any;
-likeComment(arg0: any) {
-throw new Error('Method not implemented.');
-}
+
 
 
   readonly dialog = inject(MatDialog);
   price: number= 0;
   userId: number = 0;
+  userName: string = '';
   newComment: string = '';
 
   constructor(private activatedRouter: ActivatedRoute, private customerService: CustomerService){}
@@ -31,6 +28,7 @@ throw new Error('Method not implemented.');
     this.getProdutById(this.productId);
     this.fetchComments();
     this.userId = StorageService.getUserId();
+    this.userName = StorageService.getUserName();
   }
 
   productId: any = this.activatedRouter.snapshot.params['productId'];
@@ -38,7 +36,8 @@ throw new Error('Method not implemented.');
   productAdditionalImages: string[] = [];
   ImagesCount : number[] = [];
   productAdditionalDescription: string ='';
-  comments: any[] = [];
+  comments: Comment[] = [];
+  rep: any[] =[]
 
   getProdutById(productId: number) {
     this.customerService.getProductById(productId).subscribe(
@@ -61,22 +60,31 @@ throw new Error('Method not implemented.');
     });
   }
   postComment() {
-    this.customerService.postComment(this.productId, this.userId, this.newComment).subscribe((data)=>
-      console.log('passed by here', data)
-    )
+    if (this.newComment.trim()) {
+      this.customerService.postComment(this.productId, this.userId, this.newComment).subscribe(comment => {
+        this.comments.push(comment);
+        this.newComment = '';
+      });
+    }
   }
 
   fetchComments() {
     this.customerService.getCommentsByProductId(this.productId).subscribe(comments => {
       this.comments = comments;
+      comments.forEach(comment => {
+        this.customerService.getAllReplyByCommentId(comment.id).subscribe(replies => {
+          comment.replies = replies;
+        });
+      });
     });
   }
+  
   postReply(commentId: number) {
     if (this.replyContent.trim()) {
       this.customerService.postReply(commentId, this.userId, this.replyContent).subscribe(reply => {
         const comment = this.comments.find(c => c.id === commentId);
         if (comment) {
-          comment.replies.push(reply);
+          comment.replies.push(reply); // Update UI without refresh
         }
         this.replyContent = '';
         this.replyingToCommentId = null;
@@ -86,4 +94,14 @@ throw new Error('Method not implemented.');
   toggleReplyInput(commentId: number) {
     this.replyingToCommentId = this.replyingToCommentId === commentId ? null : commentId;
   }
+  likeComment(comment_id: any) {
+    this.customerService.commentLike(comment_id, this.userId).subscribe();
+    this.customerService.getAllReplyByCommentId(comment_id).subscribe(data =>
+      console.log('reply: ', data)
+    )
+  }
+  likeReply(reply_id: any) {
+    this.customerService.replyLike(reply_id, this.userId).subscribe();
+  }
+  readonly panelOpenState = signal(true);
 }

@@ -1,5 +1,6 @@
 package com.restaurant.restaurant_spring.entities;
 
+import com.restaurant.restaurant_spring.dto.ReplyDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,5 +32,14 @@ public class Reply {
 
     public int getLikeCount() {
         return likes.size();
+    }
+
+    public ReplyDto getReplyDto() {
+        ReplyDto replyDto = new ReplyDto();
+        replyDto.setId(id);
+        replyDto.setUser_id(user.getId());
+        replyDto.setContent(content);
+        replyDto.setComment_id(parentComment.getId());
+        return replyDto;
     }
 }

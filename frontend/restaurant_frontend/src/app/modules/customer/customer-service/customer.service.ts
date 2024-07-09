@@ -1,4 +1,4 @@
-  import { HttpClient, HttpHeaders } from '@angular/common/http';
+  import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
   import { Injectable } from '@angular/core';
   import { StorageService } from '../../../auth-services/storage-service/storage.service';
   import { Observable, of } from 'rxjs';
@@ -65,7 +65,7 @@
         headers: this.creatAuthorizationHeader()
       });
     }
-    getCommentsByProductId(product_id: number): Observable<any>{
+    getCommentsByProductId(product_id: number): Observable<Comment[]>{
       return this.http.get<any>(BASIC_URL +`api/customer/product/getAllCommentsByProductId/${product_id}`,{
         headers: this.creatAuthorizationHeader()
       });
@@ -76,6 +76,30 @@
         user_id: userId,
         content: content
       }, {
+        headers: this.creatAuthorizationHeader()
+      });
+    }
+    commentLike(comment_id: number, user_id: number): Observable<any>{
+      return this.http.post<any>(BASIC_URL + `api/customer/comment/like`, {
+        comment_id: comment_id,
+        user_id: user_id,
+      }, {
+        headers: this.creatAuthorizationHeader()
+      });
+    }
+    replyLike(reply_id: number, user_id: number): Observable<any>{
+      return this.http.post<any>(BASIC_URL + `api/customer/reply/like`, {
+        comment_id: reply_id,
+        user_id: user_id,
+      }, {
+        headers: this.creatAuthorizationHeader()
+      });
+    }
+
+    getAllReplyByCommentId(comment_id: number): Observable<any>{
+      let params = new HttpParams().set('comment_id', comment_id.toString());
+      return this.http.get<any>(BASIC_URL +`api/customer/reply/getAllRepliesPerComment`,{
+        params,
         headers: this.creatAuthorizationHeader()
       });
     }
@@ -94,3 +118,21 @@
     returnedImg: string;
     averageRating?: number;
   }
+
+  export interface Reply {
+    id: number;
+    content: string;
+    user_id: number;
+    comment_id: number;
+    likes: number;
+  }
+  
+  export interface Comment {
+    id: number;
+    content: string;
+    user_id: number;
+    product_id: number;
+    likes: number;
+    replies: Reply[];
+  }
+  
