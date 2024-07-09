@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -22,6 +21,7 @@ public class CustomerServiceImpl implements CustomerService{
     public final UserRepository userRepository;
     private final CommentRepository commentRepository;
     private final ReplyRepository replyRepository;
+    private final LikeRepository likeRepository;
 
     @Override
     public List<CategoryDto> getAllCategories() {
@@ -116,6 +116,53 @@ public class CustomerServiceImpl implements CustomerService{
             return createdReplyDto;
         }
         return null;
+    }
+
+    @Override
+    public UserLikeDto LikeComment(Long commentId, Long userId) {
+        Optional<Comment> optionalComment = commentRepository.findById(commentId);
+        Optional<User> optionalUser = userRepository.findById(userId);
+        if(optionalComment.isPresent() && optionalUser.isPresent()){
+            Comment comment = optionalComment.get();
+            User user = optionalUser.get();
+            UserLike userLike = new UserLike();
+            userLike.setComment(comment);
+            userLike.setUser(user);
+            UserLike createdUserLike = likeRepository.save(userLike);
+
+            UserLikeDto userLikeDto = new UserLikeDto();
+            userLikeDto.setId(createdUserLike.getId());
+            userLikeDto.setComment_id(comment.getId());
+            userLikeDto.setUser_id(user.getId());
+            return userLikeDto;
+        }
+        return null;
+    }
+
+    @Override
+    public UserLikeDto LikeReply(Long replyId, Long userId) {
+        Optional<Reply> optionalReply = replyRepository.findById(replyId);
+        Optional<User> optionalUser = userRepository.findById(userId);
+        if(optionalReply.isPresent() && optionalUser.isPresent()){
+            Reply reply = optionalReply.get();
+            User user = optionalUser.get();
+            UserLike userLike = new UserLike();
+            userLike.setReply(reply);
+            userLike.setUser(user);
+            UserLike createdUserLike = likeRepository.save(userLike);
+
+            UserLikeDto userLikeDto = new UserLikeDto();
+            userLikeDto.setId(createdUserLike.getId());
+            userLikeDto.setComment_id(reply.getId());
+            userLikeDto.setUser_id(user.getId());
+            return userLikeDto;
+        }
+        return null;
+    }
+
+    @Override
+    public List<ReplyDto> getAllReplyByCommentId(Long commentId) {
+        return replyRepository.findAllByParentCommentId(commentId).stream().map(Reply::getReplyDto).collect(Collectors.toList());
     }
 
 }

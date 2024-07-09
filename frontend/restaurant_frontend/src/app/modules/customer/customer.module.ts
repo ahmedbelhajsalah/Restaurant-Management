@@ -21,6 +21,7 @@ import { DisplayStarsComponent } from '../common-components/display-stars/displa
 import { ShowDetailsComponent } from './customer-components/show-details/show-details.component';
 import { KeenSliderComponent } from '../common-components/keen-slider/keen-slider.component';
 import { BookDialogComponent } from '../common-components/book-dialog/book-dialog.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { BookDialogComponent } from '../common-components/book-dialog/book-dialo
     MatDividerModule,
     AdminModule,
     MatDialogModule,
+    MatExpansionModule
   ]
 })
 export class CustomerModule { }
