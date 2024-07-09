@@ -165,4 +165,24 @@ public class CustomerServiceImpl implements CustomerService{
         return replyRepository.findAllByParentCommentId(commentId).stream().map(Reply::getReplyDto).collect(Collectors.toList());
     }
 
+    @Override
+    public void deleteComment(Long commentId) {
+        Optional<Comment> optionalComment = commentRepository.findById(commentId);
+        if (optionalComment.isPresent()) {
+            commentRepository.deleteById(commentId);
+        } else {
+            throw new IllegalArgumentException("Comment with id: " + commentId + " not found");
+        }
+    }
+
+    @Override
+    public void deleteReply(Long replyId) {
+        Optional<Reply> optionalReply = replyRepository.findById(replyId);
+        if (optionalReply.isPresent()) {
+            replyRepository.deleteById(replyId);
+        } else {
+            throw new IllegalArgumentException("Reply with id: " + replyId + " not found");
+        }
+    }
+
 }

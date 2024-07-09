@@ -103,5 +103,19 @@ replyContent: any;
   likeReply(reply_id: any) {
     this.customerService.replyLike(reply_id, this.userId).subscribe();
   }
-  readonly panelOpenState = signal(true);
+  deleteComment(comment_id: number){
+    this.customerService.deleteComment(comment_id).subscribe(data =>{
+      this.comments = this.comments.filter(comment => comment.id !== comment_id);
+    });
+  }
+
+  deleteReply(commentId: number, replyId: number) {
+    this.customerService.deleteReply(replyId).subscribe(data => {
+      const comment = this.comments.find(c => c.id === commentId);
+      if (comment) {
+        comment.replies = comment.replies.filter(reply => reply.id !== replyId);
+      }
+    });
+  }
+  
 }

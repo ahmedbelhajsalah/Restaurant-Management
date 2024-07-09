@@ -100,4 +100,16 @@ public class CustomerController {
         if (getReplyDto == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(getReplyDto);
     }
+
+    @DeleteMapping("/deleteComments/{comment_id}")
+    public ResponseEntity<Void> deleteComment(@PathVariable Long comment_id) throws IOException {
+        customerService.deleteComment(comment_id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/deleteReply/{reply_id}")
+    public ResponseEntity<Void> deleteReply(@PathVariable Long reply_id) throws IOException {
+        customerService.deleteReply(reply_id);
+        return ResponseEntity.noContent().build();
+    }
 }

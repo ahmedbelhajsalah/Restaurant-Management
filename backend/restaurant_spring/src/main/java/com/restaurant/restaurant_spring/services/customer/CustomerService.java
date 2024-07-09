@@ -30,4 +30,8 @@ public interface CustomerService {
     UserLikeDto LikeReply(Long replyId, Long userId);
 
     List<ReplyDto> getAllReplyByCommentId(Long commentId);
+
+    void deleteComment(Long commentId);
+
+    void deleteReply(Long replyId);
 }
