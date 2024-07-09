@@ -26,6 +26,7 @@
                 <div class="comment-actions">
                     <button (click)="likeComment(comment.id)">Like ({{comment.likes}})</button>
                     <button (click)="toggleReplyInput(comment.id)">Reply</button>
+                    <button (click)="deleteComment(comment.id)" style="color: red;">Delete</button>
                 </div>
                 <div *ngIf="replyingToCommentId === comment.id" class="reply-input">
                     <input type="text" [(ngModel)]="replyContent" placeholder="Write your reply...">
@@ -35,6 +36,7 @@
                     <p><strong>{{userName}}: </strong>{{reply.content}}</p>
                     <div class="reply-actions">
                         <button (click)="likeReply(reply.id)">Like ({{reply.likes}})</button>
+                        <button (click)="deleteReply(comment.id, reply.id)" style="color: red;">Delete</button>
                     </div>
                 </div>
             </div>

@@ -103,6 +103,19 @@
         headers: this.creatAuthorizationHeader()
       });
     }
+
+    deleteComment(comment_id: number): Observable<Comment> {
+      return this.http.delete<Comment>(BASIC_URL + `api/customer/deleteComments/${comment_id}`,{
+        headers: this.creatAuthorizationHeader()
+      });
+    }
+
+    deleteReply(reply_id: number): Observable<Comment> {
+      return this.http.delete<Comment>(BASIC_URL + `api/customer/deleteReply/${reply_id}`,{
+        headers: this.creatAuthorizationHeader()
+      });
+    }
+
   }
   export interface Rating {
     userId: number;
