@@ -89,7 +89,7 @@
     }
     replyLike(reply_id: number, user_id: number): Observable<any>{
       return this.http.post<any>(BASIC_URL + `api/customer/reply/like`, {
-        comment_id: reply_id,
+        reply_id: reply_id,
         user_id: user_id,
       }, {
         headers: this.creatAuthorizationHeader()
@@ -112,6 +112,18 @@
 
     deleteReply(reply_id: number): Observable<Comment> {
       return this.http.delete<Comment>(BASIC_URL + `api/customer/deleteReply/${reply_id}`,{
+        headers: this.creatAuthorizationHeader()
+      });
+    }
+
+    countLikesByComment(commentId: number): Observable<number>{
+      return this.http.get<number>(BASIC_URL +`api/customer/countCommentLike/${commentId}`,{
+        headers: this.creatAuthorizationHeader()
+      });
+    }
+
+    countLikesByReply(replyId: number): Observable<number>{
+      return this.http.get<number>(BASIC_URL +`api/customer/countReplyLike/${replyId}`,{
         headers: this.creatAuthorizationHeader()
       });
     }
