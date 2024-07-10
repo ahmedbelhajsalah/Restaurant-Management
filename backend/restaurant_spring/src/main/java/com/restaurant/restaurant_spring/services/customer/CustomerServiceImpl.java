@@ -185,4 +185,11 @@ public class CustomerServiceImpl implements CustomerService{
         }
     }
 
+    public long countLikesByCommentId(Long commentId) {
+        return likeRepository.countLikesByCommentId(commentId);
+    }
+
+    public long countLikesByReplyId(Long replyId) {
+        return likeRepository.countLikesByCommentId(replyId);
+    }
 }

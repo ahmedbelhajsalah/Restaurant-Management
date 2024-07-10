@@ -10,6 +10,7 @@ import com.restaurant.restaurant_spring.services.customer.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -88,7 +89,7 @@ public class CustomerController {
     }
 
     @PostMapping("/reply/like")
-    public ResponseEntity<?> replyComment(@RequestBody UserLikeDto userLikeDto) {
+    public ResponseEntity<?> replyLike(@RequestBody UserLikeDto userLikeDto) {
         UserLikeDto userLike = customerService.LikeReply(userLikeDto.getReply_id(), userLikeDto.getUser_id());
         if (userLike == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Something went wrong");
         return ResponseEntity.status(HttpStatus.CREATED).body(userLike);
@@ -111,5 +112,17 @@ public class CustomerController {
     public ResponseEntity<Void> deleteReply(@PathVariable Long reply_id) throws IOException {
         customerService.deleteReply(reply_id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/countCommentLike/{commentId}")
+    public ResponseEntity<?> countCommentLike(@PathVariable Long commentId){
+        long likeCount = likeRepository.countLikesByCommentId(commentId);
+        return ResponseEntity.ok(likeCount);
+    }
+
+    @GetMapping("/countReplyLike/{replyId}")
+    public ResponseEntity<?> countReplyLike(@PathVariable Long replyId){
+        long likeCount = likeRepository.countLikesByReplyId(replyId);
+        return ResponseEntity.ok(likeCount);
     }
 }
