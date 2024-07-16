@@ -17,16 +17,15 @@ replyContent: any;
 
   readonly dialog = inject(MatDialog);
   price: number= 0;
-  userId: number = 0;
+  userId: number = StorageService.getUserId();
   userName: string = '';
   newComment: string = '';
 
   constructor(private activatedRouter: ActivatedRoute, private customerService: CustomerService, private cdr: ChangeDetectorRef){}
   ngOnInit(): void {
+    this.userId = StorageService.getUserId();
     this.getProdutById(this.productId);
     this.fetchComments();
-    this.userId = StorageService.getUserId();
-    this.userName = StorageService.getUserName();
   }
 
   productId: any = this.activatedRouter.snapshot.params['productId'];
@@ -60,6 +59,9 @@ replyContent: any;
   postComment() {
     if (this.newComment.trim()) {
       this.customerService.postComment(this.productId, this.userId, this.newComment).subscribe(comment => {
+        this.customerService.getUserNameById(comment.user_id).subscribe(userName =>{
+          comment.userName = userName.userName;
+        });
         this.comments.push(comment);
         this.newComment = '';
       });
@@ -70,10 +72,17 @@ replyContent: any;
     this.customerService.getCommentsByProductId(this.productId).subscribe(comments => {
       this.comments = comments;
       comments.forEach(comment => {
+        this.customerService.getUserNameById(comment.user_id).subscribe(userName =>{
+          comment.userName = userName.userName;
+        });
         this.customerService.getAllReplyByCommentId(comment.id).subscribe(replies => {
           comment.replies = replies;
           if(replies){
-            replies.forEach((reply: { id: number; likes: number; })=>{
+            replies.forEach((reply: { id: number; likes: number; userName: string, user_id: number })=>{
+              this.customerService.getUserNameById(reply.user_id).subscribe(userName =>{
+                reply.userName = userName.userName;
+                this.cdr.detectChanges();
+              });
               this.customerService.countLikesByReply(reply.id).subscribe(data=>{
                 reply.likes = data
               })
@@ -90,6 +99,10 @@ replyContent: any;
   postReply(commentId: number) {
     if (this.replyContent.trim()) {
       this.customerService.postReply(commentId, this.userId, this.replyContent).subscribe(reply => {
+        this.customerService.getUserNameById(reply.user_id).subscribe(userName =>{
+          reply.userName = userName.userName;
+          this.cdr.detectChanges();
+        });
         const comment = this.comments.find(c => c.id === commentId);
         if (comment) {
           if (!comment.replies) {
@@ -100,7 +113,7 @@ replyContent: any;
 
         this.replyContent = '';
         this.replyingToCommentId = null;
-        this.cdr.detectChanges(); // Detect changes to update the UI
+        this.cdr.detectChanges();
       });
     }
   }

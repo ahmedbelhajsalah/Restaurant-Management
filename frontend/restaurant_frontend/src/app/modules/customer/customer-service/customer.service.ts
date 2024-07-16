@@ -128,6 +128,12 @@
       });
     }
 
+    getUserNameById(userId: number): Observable<{ userName: string }> {
+      return this.http.get<{ userName: string }>(BASIC_URL +`api/customer/${userId}/name`,{
+        headers: this.creatAuthorizationHeader()
+      });
+    }
+
   }
   export interface Rating {
     userId: number;
@@ -150,6 +156,7 @@
     user_id: number;
     comment_id: number;
     likes: number;
+    userName?: string;
   }
   
   export interface Comment {
@@ -159,5 +166,6 @@
     product_id: number;
     likes: number;
     replies: Reply[];
+    userName?: string;
   }
   

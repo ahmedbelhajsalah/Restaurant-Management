@@ -192,4 +192,9 @@ public class CustomerServiceImpl implements CustomerService{
     public long countLikesByReplyId(Long replyId) {
         return likeRepository.countLikesByCommentId(replyId);
     }
+
+    public String getUserNameById(Long userId) {
+        User user = userRepository.findById(userId).orElse(null);
+        return user != null ? user.getName() : null;
+    }
 }

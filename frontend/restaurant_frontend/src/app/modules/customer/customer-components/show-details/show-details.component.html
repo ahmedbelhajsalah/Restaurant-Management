@@ -22,7 +22,7 @@
     <div class="comments-container">
         <div *ngFor="let comment of comments" class="comment">
             <div class="comment-content">
-                <p><strong>{{userName}}: </strong>{{comment.content}}</p>
+                <p><strong>{{comment.userName}}: </strong>{{comment.content}}</p>
                 <div class="comment-actions">
                     <button (click)="likeComment(comment.id)">👍 ({{comment.likes}})</button>
                     <button (click)="toggleReplyInput(comment.id)">Reply</button>
@@ -33,7 +33,7 @@
                     <button (click)="postReply(comment.id)">Post Reply</button>
                 </div>
                 <div *ngFor="let reply of comment.replies" class="reply">
-                    <p><strong>{{userName}}: </strong>{{reply.content}}</p>
+                    <p><strong>{{reply.userName}}: </strong>{{reply.content}}</p>
                     <div class="reply-actions">
                         <button (click)="likeReply(reply.id)">👍 ({{reply.likes}})</button>
                         <button (click)="deleteReply(comment.id, reply.id)" style="color: red;">Delete</button>
