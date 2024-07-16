@@ -36,4 +36,12 @@ public interface CustomerService {
     void deleteReply(Long replyId);
 
     String getUserNameById(Long userId);
+
+    boolean isReplyLikedByUser(Long replyId, Long userId);
+
+    void unlikeReply(Long replyId, Long userId);
+
+    boolean isCommentLikedByUser(Long commentId, Long userId);
+
+    void unlikeComment(Long commentId, Long userId);
 }

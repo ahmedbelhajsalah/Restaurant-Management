@@ -121,23 +121,49 @@ replyContent: any;
     this.replyingToCommentId = this.replyingToCommentId === commentId ? null : commentId;
   }
   likeComment(comment_id: any) {
-    this.customerService.commentLike(comment_id, this.userId).subscribe();
-    const comment = this.comments.find(c => c.id === comment_id);
-        if (comment) {
-          comment.likes ++;
-        }
-  }
-  likeReply(reply_id: any) {
-    this.customerService.replyLike(reply_id, this.userId).subscribe(() => {
-      this.comments.forEach((comment) => {
-        comment.replies.forEach((reply) => {
-          if (reply.id === reply_id) {
-            reply.likes++;
+    this.customerService.isCommentLiked(comment_id, this.userId).subscribe(isLiked => {
+      if (isLiked) {
+        this.customerService.unlikeComment(comment_id, this.userId).subscribe(() => {
+          const comment = this.comments.find(c => c.id === comment_id);
+          if (comment) {
+            comment.likes--;
           }
         });
-      });
+      } else {
+        this.customerService.commentLike(comment_id, this.userId).subscribe(() => {
+          const comment = this.comments.find(c => c.id === comment_id);
+          if (comment) {
+            comment.likes++;
+          }
+        });
+      }
     });
   }
+
+  likeReply(reply_id: any) {
+    this.customerService.isReplyLiked(reply_id, this.userId).subscribe(isLiked => {
+      if (isLiked) {
+        this.customerService.unlikeReply(reply_id, this.userId).subscribe(() => {
+          this.comments.forEach((comment) => {
+            const reply = comment.replies.find(r => r.id === reply_id);
+            if (reply) {
+              reply.likes--;
+            }
+          });
+        });
+      } else {
+        this.customerService.replyLike(reply_id, this.userId).subscribe(() => {
+          this.comments.forEach((comment) => {
+            const reply = comment.replies.find(r => r.id === reply_id);
+            if (reply) {
+              reply.likes++;
+            }
+          });
+        });
+      }
+    });
+  }
+
   deleteComment(comment_id: number){
     this.customerService.deleteComment(comment_id).subscribe(data =>{
       this.comments = this.comments.filter(comment => comment.id !== comment_id);

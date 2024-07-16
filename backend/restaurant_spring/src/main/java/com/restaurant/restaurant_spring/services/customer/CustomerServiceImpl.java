@@ -5,6 +5,7 @@ import com.restaurant.restaurant_spring.entities.*;
 import com.restaurant.restaurant_spring.repositories.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.List;
@@ -196,5 +197,27 @@ public class CustomerServiceImpl implements CustomerService{
     public String getUserNameById(Long userId) {
         User user = userRepository.findById(userId).orElse(null);
         return user != null ? user.getName() : null;
+    }
+
+    @Override
+    public boolean isReplyLikedByUser(Long replyId, Long userId) {
+        return likeRepository.existsByReplyIdAndUserId(replyId, userId);
+    }
+
+    @Transactional
+    @Override
+    public void unlikeReply(Long replyId, Long userId) {
+        likeRepository.deleteByReplyIdAndUserId(replyId, userId);
+    }
+
+    @Override
+    public boolean isCommentLikedByUser(Long commentId, Long userId) {
+        return likeRepository.existsByCommentIdAndUserId(commentId, userId);
+    }
+
+    @Transactional
+    @Override
+    public void unlikeComment(Long commentId, Long userId) {
+        likeRepository.deleteByCommentIdAndUserId(commentId, userId);
     }
 }

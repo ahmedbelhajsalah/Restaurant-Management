@@ -134,6 +134,30 @@
       });
     }
 
+    isCommentLiked(commentId: number, userId: number): Observable<boolean>{
+      return this.http.get<boolean>(BASIC_URL +`api/customer/isCommentLiked/${commentId}/${userId}`,{
+        headers: this.creatAuthorizationHeader()
+      });
+    }
+
+    unlikeComment(commentId: number, userId: number): Observable<any>{
+      return this.http.delete<any>(BASIC_URL + `api/customer/unlikeComment/${commentId}/${userId}`,{
+        headers: this.creatAuthorizationHeader()
+      });
+    }
+
+    isReplyLiked(replyId: number, userId: number): Observable<boolean>{
+      return this.http.get<boolean>(BASIC_URL +`api/customer/isReplyLiked/${replyId}/${userId}`,{
+        headers: this.creatAuthorizationHeader()
+      });
+    }
+
+    unlikeReply(replyId: number, userId: number): Observable<any>{
+      return this.http.delete<any>(BASIC_URL + `api/customer/unlikeReply/${replyId}/${userId}`,{
+        headers: this.creatAuthorizationHeader()
+      });
+    }
+
   }
   export interface Rating {
     userId: number;
