@@ -139,4 +139,28 @@ public class CustomerController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/isCommentLiked/{commentId}/{userId}")
+    public ResponseEntity<Boolean> isCommentLiked(@PathVariable Long commentId, @PathVariable Long userId) {
+        boolean isLiked = customerService.isCommentLikedByUser(commentId, userId);
+        return ResponseEntity.ok(isLiked);
+    }
+
+    @DeleteMapping("/unlikeComment/{commentId}/{userId}")
+    public ResponseEntity<Void> unlikeComment(@PathVariable Long commentId, @PathVariable Long userId) {
+        customerService.unlikeComment(commentId, userId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/isReplyLiked/{replyId}/{userId}")
+    public ResponseEntity<Boolean> isReplyLiked(@PathVariable Long replyId, @PathVariable Long userId) {
+        boolean isLiked = customerService.isReplyLikedByUser(replyId, userId);
+        return ResponseEntity.ok(isLiked);
+    }
+
+    @DeleteMapping("/unlikeReply/{replyId}/{userId}")
+    public ResponseEntity<Void> unlikeReply(@PathVariable Long replyId, @PathVariable Long userId) {
+        customerService.unlikeReply(replyId, userId);
+        return ResponseEntity.noContent().build();
+    }
 }

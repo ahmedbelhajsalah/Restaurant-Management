@@ -12,4 +12,12 @@ public interface LikeRepository extends JpaRepository<UserLike, Long> {
 
     @Query("SELECT COUNT(ul) FROM UserLike ul WHERE ul.reply.id = :replyId")
     long countLikesByReplyId(Long replyId);
+
+    boolean existsByCommentIdAndUserId(Long commentId, Long userId);
+
+    void deleteByCommentIdAndUserId(Long commentId, Long userId);
+
+    boolean existsByReplyIdAndUserId(Long replyId, Long userId);
+
+    void deleteByReplyIdAndUserId(Long replyId, Long userId);
 }
