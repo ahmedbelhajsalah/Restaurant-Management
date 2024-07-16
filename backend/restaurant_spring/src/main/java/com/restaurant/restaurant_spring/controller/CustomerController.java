@@ -14,7 +14,9 @@ import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin("http://localhost:4200")
 @RestController
@@ -124,5 +126,17 @@ public class CustomerController {
     public ResponseEntity<?> countReplyLike(@PathVariable Long replyId){
         long likeCount = likeRepository.countLikesByReplyId(replyId);
         return ResponseEntity.ok(likeCount);
+    }
+
+    @GetMapping("/{userId}/name")
+    public ResponseEntity<Map<String, String>> getUserNameById(@PathVariable Long userId) {
+        String userName = customerService.getUserNameById(userId);
+        if (userName != null) {
+            Map<String, String> response = new HashMap<>();
+            response.put("userName", userName);
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

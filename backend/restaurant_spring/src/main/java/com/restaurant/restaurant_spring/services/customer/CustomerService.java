@@ -34,4 +34,6 @@ public interface CustomerService {
     void deleteComment(Long commentId);
 
     void deleteReply(Long replyId);
+
+    String getUserNameById(Long userId);
 }
