@@ -21,7 +21,7 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: run tests
-        run: npm run test -- --include src/app/modules/common-components/book-dialog/book-dialog.component.spec.ts
+        run: npm run test -- --include restaurant_frontend/src/app/modules/common-components/book-dialog/book-dialog.component.spec.ts
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
