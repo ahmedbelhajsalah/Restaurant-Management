@@ -31,4 +31,4 @@ jobs:
         run: npm install
 
       - name: Run tests
-        run: npm run test -- --include src/app/modules/common-components/book-dialog/book-dialog.component.spec.ts
+        run: npm run test -- --include frontend/restaurant_frontend/src/app/modules/common-components/book-dialog/book-dialog.component.spec.ts
