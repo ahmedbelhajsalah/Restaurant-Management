@@ -20,8 +20,6 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
-      - name: install dependencies
-        run: npm ci
       - name: run tests
         run: npm run test -- --include src/app/modules/common-components/book-dialog/book-dialog.component.spec.ts
   # This workflow contains a single job called "build"
